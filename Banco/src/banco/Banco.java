@@ -6,8 +6,6 @@
 package banco;
 
 import BancoCliente.Envio;
-import BancoVendedor.SSLClient;
-import BancoVendedor.SSLServer;
 import Dominio.Sistema;
 import java.util.Scanner;
 import java.util.logging.Level;
