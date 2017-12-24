@@ -17,3 +17,5 @@
 /BancoVendedor/dist/
 /BancoVendedor/nbdist/
 /BancoVendedor/.nb-gradle/
+/Banco/nbproject/private/
+/Banco/build/
