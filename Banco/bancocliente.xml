@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<banco>
+  <cuenta nombre="Garry" apellido="Bruno" cedula="24939724" numero="463728495837206462743" tipo="Corriente" saldo="500000.0">
+    <tarjeta numero="98723643327893" marca="Visa" codigo="4563" clave="1234" />
+  </cuenta>
+  <cuenta nombre="Aquiles" apellido="Pulido" cedula="24782343" numero="283649687512457857320" tipo="Ahorro" saldo="500000.0">
+    <tarjeta numero="12922892832908" marca="Master Card" codigo="8675" clave="5678" />
+  </cuenta>
+</banco>
+

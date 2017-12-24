@@ -48,15 +48,15 @@ public class Recepcion extends Thread {
                //Mensaje que llega:
                 mensaje = (String)ois.readObject();
                //Preparo respuesta:
-                Object respuesta = new String("Caaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasa");
+                Object respuesta = null;
                //RESPUESTAS DEL SERVIDOR:
                //----------------------------------------------------------------------
                switch(mensaje.split(":")[0]){
-                    case "0":
+                    case"0":
 
                     break;
                     case"1":
-
+                      
                     break;
                     case"2":
 

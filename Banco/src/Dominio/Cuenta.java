@@ -12,7 +12,8 @@ package Dominio;
 public class Cuenta {
       
       private String nombre; 
-      private String apellido; 
+      private String apellido;
+      private String cedula;
       private String numerocuenta; 
       private String tipocuenta;
       private float saldo; 
@@ -22,13 +23,23 @@ public class Cuenta {
 
       }
 
-    public Cuenta(String nombre, String apellido, String numerocuenta, String tipocuenta,float saldo) {
+    public Cuenta(String nombre, String apellido,String cedula, String numerocuenta, String tipocuenta,float saldo) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.numerocuenta = numerocuenta;
         this.tipocuenta = tipocuenta;
-        this.saldo = saldo;
-        
+        this.saldo = saldo; 
+        this.cedula = cedula; 
+    }
+    
+    public Cuenta(String nombre, String apellido,String cedula, String numerocuenta, String tipocuenta,float saldo,Tarjeta tarjeta) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.cedula = cedula; 
+        this.numerocuenta = numerocuenta;
+        this.tipocuenta = tipocuenta;
+        this.saldo = saldo; 
+        this.tarjeta = tarjeta; 
     }
       
       
@@ -80,9 +91,13 @@ public class Cuenta {
     public void setSaldo(float saldo) {
         this.saldo = saldo;
     }
-      
-      
-      
-      
-      
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+    
 }

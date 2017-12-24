@@ -15,16 +15,20 @@ public class Tarjeta {
     private String numero; 
     private String marca; 
     private String codseguridad; 
+    private float saldo; 
+    private int clave; 
     
     public Tarjeta (){
     
     
     }
 
-    public Tarjeta(String numero, String marca, String codseguridad) {
+    public Tarjeta(String numero, String marca, String codseguridad,int clave,float saldo) {
         this.numero = numero;
         this.marca = marca;
         this.codseguridad = codseguridad;
+        this.clave = clave;
+        this.saldo = saldo;
     }
 
     
@@ -52,6 +56,23 @@ public class Tarjeta {
     public void setCodseguridad(String codseguridad) {
         this.codseguridad = codseguridad;
     }
+
+    public int getClave() {
+        return clave;
+    }
+
+    public void setClave(int clave) {
+        this.clave = clave;
+    }
+
+    public float getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(float saldo) {
+        this.saldo = saldo;
+    }
+    
     
     
 }

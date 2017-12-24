@@ -48,7 +48,12 @@ public class Recepcion extends Thread {
 
                     break;
                     case"1":
-
+                     if(ControladorC.debitarTarjeta(mensaje.split(":")[1],mensaje.split(":")[2],
+                     Integer.parseInt(mensaje.split(":")[3]),Float.parseFloat(mensaje.split(":")[4]))){
+                     if((boolean)(Envio.enviodato("3:"+mensaje.split(":")[5]+mensaje.split(":")[4],"bancovendedor")))
+                      System.out.println("Se ha debitado la cantidad en la cuenta del vendedor exitosamente");
+                     }
+                     
                     break;
                     case"2":
 

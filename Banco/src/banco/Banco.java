@@ -34,14 +34,14 @@ public class Banco {
             System.out.println("Ingresa tu opcion: ");
             String i = sc.nextLine();
             switch(i){
-            case "1":{     
+            case "1":{
+                    Sistema.cargaInicialBancoCliente();
                     new BancoCliente.Control().start();
-                    System.out.println("Respuesta : " + Envio.enviodato("Hola mundo","bancovendedor"));
             break;
             }
             case "2":{
+                    Sistema.cargaInicialBancoVendedor();
                     new BancoVendedor.Control().start();
-                    //Envio.enviodato("Todo fino","bancovendedor");
             break;
             }
             case "3": {

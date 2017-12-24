@@ -60,6 +60,7 @@ public class DaoCliente {
             Element elemento = new Element("cuenta");
             elemento.setAttribute("nombre",cuenta.getNombre());
             elemento.setAttribute("apellido",cuenta.getApellido());
+            elemento.setAttribute("cedula", cuenta.getCedula());
             elemento.setAttribute("numero",cuenta.getNumerocuenta());
             elemento.setAttribute("tipo",cuenta.getTipocuenta());
             elemento.setAttribute("saldo",Float.toString(cuenta.getSaldo()));
@@ -67,11 +68,12 @@ public class DaoCliente {
             tarjeta.setAttribute("numero",cuenta.getTarjeta().getNumero());
             tarjeta.setAttribute("marca",cuenta.getTarjeta().getMarca());
             tarjeta.setAttribute("codigo",cuenta.getTarjeta().getCodseguridad());
+            tarjeta.setAttribute("clave",Integer.toString(cuenta.getTarjeta().getClave()));
+            tarjeta.setAttribute("saldo",Float.toString(cuenta.getTarjeta().getSaldo()));
             elemento.addContent(tarjeta);
             root.addContent(elemento);
             document.removeContent();
             document.addContent(root);
-            
                 try {
                     FileWriter writer = new FileWriter(xmlFile);
                     XMLOutputter outputter = new XMLOutputter();
@@ -84,9 +86,9 @@ public class DaoCliente {
                 }
     }
     /*
-      Elimina un recurso del cliente 
+      Elimina una cuenta de un cliente 
     */
-    public void eliminarRecurso(int numero){
+    public void eliminarCuenta(int numero){
        
         File xmlFile = new File(filelocation);
         Document document = null;
@@ -113,7 +115,7 @@ public class DaoCliente {
             Element aux = new Element("cuenta");
             List recursos = root.getChildren("cuenta");
             while (aux != null) {
-                aux = obtenerIdRecurso(recursos,numero);
+                aux = obtenerCuenta(recursos,numero);
                 if (aux != null) {
                     recursos.remove(aux);
                     updateDocument();   
@@ -135,9 +137,9 @@ public class DaoCliente {
     }
     
     /*
-     Devuelve un recurso del cliente
+     Devuelve una cuenta en base a la Tarjeta de un cliente
     */
-    public Cuenta obtenerRecurso(int id){
+    public Cuenta obtenerCuenta(int id,String codigo,int clave){
        File xmlFile = new File(filelocation);
         Document document = null;
         if(xmlFile.exists()) {
@@ -154,14 +156,59 @@ public class DaoCliente {
                 Cuenta resultado = null;
                     Element aux = new Element("cuenta");
                     List nodos = root.getChildren("cuenta");
-                    aux = obtenerIdRecurso(nodos,id);
+                    aux = obtenerTarjeta(nodos,id,codigo,clave);
                     if(aux != null) {
                         resultado =  new Cuenta(aux.getAttributeValue("nombre")
-                                 ,aux.getAttributeValue("apellido"),aux.getAttributeValue("numero")
+                                 ,aux.getAttributeValue("apellido")
+                                 ,aux.getAttributeValue("cedula")
+                                 ,aux.getAttributeValue("numero")
                                  ,aux.getAttributeValue("tipo"),
                                  Float.parseFloat(aux.getAttributeValue("saldo")));
                         Element tar = aux.getChild("tarjeta");
-                        resultado.setTarjeta(new Tarjeta(tar.getAttributeValue("numero"),tar.getAttributeValue("marca"),tar.getAttributeValue("codigo")));
+                        resultado.setTarjeta(new Tarjeta(tar.getAttributeValue("numero"),tar.getAttributeValue("marca"),tar.getAttributeValue("codigo"),Integer.parseInt(tar.getAttributeValue("clave")),Float.parseFloat(tar.getAttributeValue("saldo"))));
+                    }
+                fis.close();
+                return resultado; 
+            } catch (JDOMException ex) {
+                Logger.getLogger(DaoVendedor.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(DaoVendedor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+         } 
+
+        return null; 
+    }
+    
+    /*
+     Devuelve una cuenta en base a la Tarjeta de un cliente
+    */
+    public Cuenta obtenerCuenta(int id){
+       File xmlFile = new File(filelocation);
+        Document document = null;
+        if(xmlFile.exists()) {
+            try {
+                // try to load document from xml file if it exist
+                // create a file input stream
+                FileInputStream fis = new FileInputStream(xmlFile);
+                // create a sax builder to parse the document
+                SAXBuilder sb = new SAXBuilder();
+                // parse the xml content provided by the file input stream and create a Document object
+                document = sb.build(fis);
+                // get the root element of the document
+                root = document.getRootElement();
+                Cuenta resultado = null;
+                    Element aux = new Element("cuenta");
+                    List nodos = root.getChildren("cuenta");
+                    aux = obtenerCuenta(nodos,id);
+                    if(aux != null) {
+                        resultado =  new Cuenta(aux.getAttributeValue("nombre")
+                                 ,aux.getAttributeValue("apellido")
+                                 ,aux.getAttributeValue("cedula")
+                                 ,aux.getAttributeValue("numero")
+                                 ,aux.getAttributeValue("tipo"),
+                                 Float.parseFloat(aux.getAttributeValue("saldo")));
+                        Element tar = aux.getChild("tarjeta");
+                        resultado.setTarjeta(new Tarjeta(tar.getAttributeValue("numero"),tar.getAttributeValue("marca"),tar.getAttributeValue("codigo"),Integer.parseInt(tar.getAttributeValue("clave")),Float.parseFloat(tar.getAttributeValue("saldo"))));
                     }
                 fis.close();
                 return resultado; 
@@ -192,9 +239,28 @@ public class DaoCliente {
     
       
     /*
-     Retorna la ip del nodo en HASH almacenada
+     Retorna la cuenta de un usuario 
     */
-    public Element obtenerIdRecurso(List raiz,int id){
+    public Element obtenerTarjeta(List raiz,int id,String codigo, int clave){
+        
+         Iterator i = raiz.iterator();
+          while (i.hasNext()) {
+            //System.out.println("i tiene algo");
+            Element e = (Element) i.next();
+            Element tarjeta = e.getChild("tarjeta");
+            if ((id==Integer.parseInt(tarjeta.getAttributeValue("numero")))
+                    &&(codigo==tarjeta.getAttributeValue("codigo"))
+                    &&(clave==Integer.parseInt(tarjeta.getAttributeValue("clave")))) {
+                return e;
+            }
+        }
+      return null; 
+    }
+    
+        /*
+     Retorna la cuenta de un usuario 
+    */
+    public Element obtenerCuenta(List raiz,int id){
         
          Iterator i = raiz.iterator();
           while (i.hasNext()) {
