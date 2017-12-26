@@ -35,7 +35,7 @@
                 <div style=" background-color:#0445B5; overflow-x: hidden;">
                 <div class="container">
                 <div class="col-md-3">
-                    <a href="index.jsp"><img src="recursos/logo.png" alt="tiendaUCAB"></a>
+                    <a href="procesamiento/iniciarsesion.jsp"><img src="recursos/logo.png" alt="tiendaUCAB"></a>
                 </div>
                 <div class="col-md-5">
                     <center>
@@ -58,20 +58,31 @@
                  
                         <div class="col-md-1"></div>
                         <div class="col-md-10">
-                        <form method="post" action="">
-                        <div>
-                            <div>
-                                <center><label for="">Iniciar Sesión</label></center>
-                            </div>
-                        <label for="">Nombre de usuario:</label>
-                        <input type="user" class="form-control" id="usuario" placeholder="Usuario">
-                        <label for="contrasena">Contraseña:</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
-                        <br>
-                        <center>
-                        <button type="submit" class="btn btn-primary">Ingresar</button>
-                        </center>
-                        </form>
+                        <%  
+                        if(request.getSession().getAttribute("usuario")==null){
+                        out.print("<form method='post' action='procesamiento/iniciarsesion.jsp'>"+
+                        "<div>"+
+                        "    <div>"+
+                        "        <center><label>Iniciar Sesión</label></center>"+
+                        "    </div>"+
+                        "<label >Nombre de usuario:</label>"+
+                        "<input type='user' class='form-control' id='usuario' placeholder='Cedula' name='usuario'>"+
+                        "<label for='contrasena'>Contraseña:</label>"+
+                        "<input type='password' class='form-control' id='exampleInputPassword1' placeholder='Contraseña' name='pwd'>"+
+                        "<br>"+
+                        "<center>"+
+                        "<button type='submit' class='btn btn-primary'>Ingresar</button>"+
+                        "</center>"+
+                        "</form>"
+                        );
+                        }else{
+                         out.print("<div>"
+                                 + "<div><center><IMG SRC='recursos/usuario.png' WIDTH=100 HEIGHT=100></center></div>"
+                                 + "<br>"
+                                 + "<div><center><a href='procesamiento/cerrarsesion.jsp'><button class='btn btn-primary'>Cerrar Sesion</button></a></center></div>"
+                                );
+                        }
+                        %>
                          <br>
                         </div>
                         </div>
