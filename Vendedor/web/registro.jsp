@@ -89,26 +89,30 @@
                 <br>
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                  <form action="" method="POST">
+                  <form action="procesamiento/registro.jsp" method="post">
                     <div class="form-group">
                       <label for="name">Nombre:</label>
-                      <input type="name" class="form-control" id="name">
+                      <input type="name" class="form-control" id="name" name="name">
                     </div>
                     <div class="form-group">
                       <label for="lastname">Apellido:</label>
-                      <input type="lastname" class="form-control" id="lastname">
+                      <input type="lastname" class="form-control" id="lastname" name="lastname">
+                    </div>  
+                    <div class="form-group">
+                      <label for="id">Cedula:</label>
+                      <input type="id" class="form-control" id="cedula" name="cedula">
                     </div>  
                     <div class="form-group">
                       <label for="email">Correo electronico:</label>
-                      <input type="email" class="form-control" id="email">
+                      <input type="email" class="form-control" id="email" name="email">
                     </div>
                     <div class="form-group">
                       <label for="pwd">Ingrese una contraseña: </label>
-                      <input type="password" class="form-control" id="pwd">
+                      <input type="password" class="form-control" id="pwd" name="pwd">
                     </div>
                     <div class="form-group">
                       <label for="pwd">Repita la contraseña: </label>
-                      <input type="password" class="form-control" id="pwd2">
+                      <input type="password" class="form-control" id="pwd2" name="pwd2">
                     </div>
                     <button type="submit" class="btn btn-default">Listo</button>
                   </form>
