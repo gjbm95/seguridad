@@ -4,11 +4,15 @@
     Author     : Junior
 --%>
 
+<%@page import="Dominio.Sistema"%>
 <%@page import="java.io.File"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="Red.*" %>
 <%
+            if (Sistema.suiche){ 
             new Control().start();
+            Sistema.suiche = false;
+            }
             String usuario = (String) request.getParameter("usuario");
             String pass = (String) request.getParameter("pwd");
             
