@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="net.tanesha.recaptcha.ReCaptcha" %>
+<%@ page import="net.tanesha.recaptcha.ReCaptchaFactory" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -89,31 +91,35 @@
                 <br>
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                  <form action="procesamiento/registro.jsp" method="post">
+                  <form action="procesamiento/registro.jsp" method="post"  onsubmit="return validar()">
                     <div class="form-group">
                       <label for="name">Nombre:</label>
-                      <input type="name" class="form-control" id="name" name="name">
+                      <input type="name" class="form-control" id="name" name="name" required pattern="[A-Za-z]+">
                     </div>
                     <div class="form-group">
                       <label for="lastname">Apellido:</label>
-                      <input type="lastname" class="form-control" id="lastname" name="lastname">
+                      <input type="lastname" class="form-control" id="lastname" name="lastname" required pattern="[A-Za-z]+">
                     </div>  
                     <div class="form-group">
                       <label for="id">Cedula:</label>
-                      <input type="id" class="form-control" id="cedula" name="cedula">
+                      <input type="id" class="form-control" id="cedula" name="cedula" required pattern="[0-9]+">
                     </div>  
                     <div class="form-group">
                       <label for="email">Correo electronico:</label>
-                      <input type="email" class="form-control" id="email" name="email">
+                      <input type="email" class="form-control" id="email" name="email" required>
                     </div>
                     <div class="form-group">
                       <label for="pwd">Ingrese una contraseña: </label>
-                      <input type="password" class="form-control" id="pwd" name="pwd">
+                      <input type="password" class="form-control" id="pwd" name="pwd" required>
                     </div>
                     <div class="form-group">
                       <label for="pwd">Repita la contraseña: </label>
-                      <input type="password" class="form-control" id="pwd2" name="pwd2">
+                      <input type="password" class="form-control" id="pwd2" name="pwd2" required>
                     </div>
+                    <%
+                        ReCaptcha c = ReCaptchaFactory.newReCaptcha("6LeYWT4UAAAAABnQP_9RWZUJtc_w1axpT7F0wln1", "6LeYWT4UAAAAAEgGETIGFadXLo1bUY6XxEXF_Et_", false);
+                        out.print(c.createRecaptchaHtml(null, null));
+                    %>
                     <button type="submit" class="btn btn-default">Listo</button>
                   </form>
                 </div>                
@@ -121,6 +127,17 @@
             </div>
             
         </div>
+        
+        <script>     
+            function validar(){
+              if(document.getElementById("pwd").value===document.getElementById("pwd2").value){ 
+                  return true; 
+              }else{
+                  alert("Las contrasenas son distintas!");
+                  return false;
+              }
+            } 
+        </script>
     </body>
 </html>
 

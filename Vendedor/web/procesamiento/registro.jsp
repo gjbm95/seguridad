@@ -4,9 +4,11 @@
     Author     : Junior
 --%>
 
-<%@page import="Dominio.*"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="Dominio.*"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="Controladores.*" %>
+<%@ page import="net.tanesha.recaptcha.ReCaptchaImpl" %>
+<%@ page import="net.tanesha.recaptcha.ReCaptchaResponse" %>
 <!DOCTYPE html>
 <% 
  
@@ -14,8 +16,26 @@
     String apellido= (String) request.getParameter("lastname");
     String cedula = (String) request.getParameter("cedula");
     String contrasena = (String) request.getParameter("pwd"); 
-    String email = (String) request.getParameter("email"); 
+    String email = (String) request.getParameter("email");
     
-    new Cliente(nombre,apellido, cedula,email,Integer.toString(contrasena.hashCode())); 
-    response.sendRedirect("http://localhost:8080/Vendedor/");
+    //Validacion del Captcha
+    String remoteAddr = request.getRemoteAddr();
+    ReCaptchaImpl reCaptcha = new ReCaptchaImpl();
+    reCaptcha.setPrivateKey("6LeYWT4UAAAAAEgGETIGFadXLo1bUY6XxEXF_Et_");
+    String challenge = request.getParameter("recaptcha_challenge_field");
+    String uresponse = request.getParameter("recaptcha_response_field");
+    ReCaptchaResponse reCaptchaResponse = reCaptcha.checkAnswer(remoteAddr, challenge, uresponse);
+    if (reCaptchaResponse.isValid()) {
+      
+      new Cliente(nombre,apellido, cedula,email,Integer.toString(contrasena.hashCode())); 
+      //LLamada a DAO
+      
+      //-------------------------------------------
+       out.print("<script> alert('Registro Exitoso'); </script>");
+       response.sendRedirect("http://localhost:8080/Vendedor/");
+    } else {
+      out.print("<script> alert('Error en el captcha');  window.history.back();</script>");
+    }
+    
+
 %>
