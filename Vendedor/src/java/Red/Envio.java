@@ -44,11 +44,11 @@ public class Envio {
             
             Socket reves = null;
             if(tipo.equals("bancocliente")){
-            CLIENT_KEY_STORE = Sistema.llaveClientBancoCliente;
+            CLIENT_KEY_STORE = Sistema.llaveClientVendedor;
             reves = clientWithCert(Sistema.ipbancoc,Sistema.puertoc);
             }
             if(tipo.equals("bancovendedor")){ 
-            CLIENT_KEY_STORE = Sistema.llaveClientBancoVendedor;
+            CLIENT_KEY_STORE = Sistema.llaveClientVendedor;
             reves = clientWithCert(Sistema.ipbancov,Sistema.puertov);
             }
             if(tipo.equals("vendedor")){

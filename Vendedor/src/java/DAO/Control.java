@@ -57,7 +57,6 @@ public class Control {
             elemento.setAttribute("nombre",producto.getNombre());
             elemento.setAttribute("descripcion", producto.getDescripcion());
             elemento.setAttribute("precio",Float.toString(producto.getPrecio()));
-            System.out.println("AQUIIII");
             root.addContent(elemento);
             document.removeContent();
             document.addContent(root);

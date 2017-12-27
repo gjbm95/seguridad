@@ -49,7 +49,6 @@ public class Recepcion extends Thread {
                 mensaje = (String)ois.readObject();
                //Preparo respuesta:
                 Object respuesta = null;
-                System.out.println("Recibiendo: " + mensaje);
                //RESPUESTAS DEL SERVIDOR:
                //----------------------------------------------------------------------
                switch(mensaje.split(":")[0]){
