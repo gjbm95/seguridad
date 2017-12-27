@@ -37,7 +37,6 @@ public class Banco {
             case "1":{
                     Sistema.cargaInicialBancoCliente();
                     new BancoCliente.Control().start();
-                    Envio.enviodato("Probando","vendedor");
             break;
             }
             case "2":{

@@ -24,6 +24,7 @@ public class Sistema {
      public static String llaveClientBancoCliente = "seguridad/BancoCliente/clientBancoCliente_ks";
      public static String llaveServerVendedor = "";
      public static String llaveClientVendedor = "";
+     public static boolean suiche = true; 
      
    //Almaceno los datos
      
