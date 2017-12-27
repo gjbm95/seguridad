@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="Controladores.Productos"%>
 <%@page import="Controladores.Usuario"%>
 <%@page import="Dominio.Sistema"%>
 <%@page import="java.io.File"%>
@@ -19,8 +20,10 @@
             String pass = (String) request.getParameter("pwd");
             
             //Inicio de Sesion  
-            
+            Productos pro=new Productos();
             Usuario usu=new Usuario();
+            pro.ObtenerListaProductos();
+            //pro.AgregarProductos();
             //usu.GenerarFactura("2");
             //usu.AgregarCliente();
             if(usu.IniciarSesion(usuario, pass)==true){

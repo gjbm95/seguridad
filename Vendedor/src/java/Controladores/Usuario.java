@@ -52,10 +52,10 @@ public class Usuario extends HttpServlet{
     }
     
     public void GenerarFactura(String cedula){
-        Producto producto= new Producto(55,"frutasaa","es malaa",123);
+        /*Producto producto= new Producto(55,"frutasaa","es malaa",123);
         Factura fact= new Factura(1,producto);
         Control dao= new Control();
-        dao.generarFactura(cedula,fact);
+        dao.generarFactura(cedula,fact);*/
     
     
     }

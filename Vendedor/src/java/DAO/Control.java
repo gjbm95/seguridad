@@ -57,6 +57,7 @@ public class Control {
             elemento.setAttribute("nombre",producto.getNombre());
             elemento.setAttribute("descripcion", producto.getDescripcion());
             elemento.setAttribute("precio",Float.toString(producto.getPrecio()));
+            elemento.setAttribute("imagen", producto.getImagen());
             root.addContent(elemento);
             document.removeContent();
             document.addContent(root);
@@ -292,6 +293,63 @@ public class Control {
       return null; 
     }
         
+        
+        public ArrayList<Producto> obtenerListaProductos(){
+        
+        ArrayList<Producto> producto = new ArrayList<Producto>();
+            
+        File xmlFile = new File(filelocation);
+        Document document = null;
+        if(xmlFile.exists()) {
+            try {
+                // try to load document from xml file if it exist
+                // create a file input stream
+                FileInputStream fis = new FileInputStream(xmlFile);
+                // create a sax builder to parse the document
+                SAXBuilder sb = new SAXBuilder();
+                // parse the xml content provided by the file input stream and create a Document object
+                document = sb.build(fis);
+                // get the root element of the document
+                root = document.getRootElement();
+                fis.close();
+            } catch (JDOMException ex) {
+                Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
+            }
+         } 
+        
+            List recursos = root.getChildren("producto");
+           
+            /*document.removeContent();
+            document.addContent(root);
+            
+                try {
+                    FileWriter writer = new FileWriter(xmlFile);
+                    XMLOutputter outputter = new XMLOutputter();
+                    outputter.setFormat(Format.getPrettyFormat());
+                    outputter.output(document, writer);
+                    //outputter.output(document, System.out);
+                    writer.close(); // close writer
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }*/
+        
+         Iterator i = recursos.iterator();
+          while (i.hasNext()) {
+            Element e = (Element) i.next();
+            Producto pro = new Producto();
+            pro.setId(Integer.parseInt(e.getAttributeValue("id")));
+            pro.setNombre(e.getAttributeValue("nombre"));
+            pro.setDescripcion(e.getAttributeValue("descripcion"));
+            pro.setPrecio(Float.parseFloat(e.getAttributeValue("precio")));
+            pro.setImagen(e.getAttributeValue("imagen"));
+            producto.add( pro );
+        }
+            return producto;
+        }
+        
+        
         public boolean validarInicioSesion(String cedula,String contrasena){
         File xmlFile = new File(filelocation_cliente);
         Document document = null;
@@ -314,7 +372,6 @@ public class Control {
             }
          } 
         
-            Element aux = new Element("cliente");
             List recursos = root.getChildren("cliente");
            
             /*document.removeContent();
@@ -342,7 +399,7 @@ public class Control {
       return false; 
     }
     
-         /*
+    /*
      Retorna el cliente por su cedula
     */
     
@@ -373,7 +430,6 @@ public class Control {
 		// display nice nice
 		xmlOutput.setFormat(Format.getPrettyFormat());
 		xmlOutput.output(doc, new FileWriter(filelocation));
-                System.out.println("TERMINO DE CREAR EL XML");
 	  } catch (IOException io) {
 		System.out.println(io.getMessage());
 	  }
@@ -476,6 +532,7 @@ public class Control {
                     producto.setAttribute("precio",Float.toString(fac.getProducto().getPrecio()));
                     Date fecha=new Date();
                     producto.setAttribute("fecha",fecha.toString());
+                    producto.setAttribute("imagen",fac.getProducto().getImagen());
                     aux.addContent(factura);
                     factura.addContent(producto);
                     document.removeContent();
