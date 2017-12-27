@@ -123,7 +123,9 @@
                             "    <div class='col-md-12' style='color:#ffffff;'>"+
                             "        <div class='col-md-12'><label>"+producto.getNombre()+"</label></div>"+
                             "        <div class='col-md-12'><label>Precio: "+producto.getPrecio()+" Bs.</label></div>"+
-                            "        <div class='col-md-12'><center><a href='producto.jsp?id="+producto.getId()+"&nombre="+producto.getNombre()+"&descripcion="+producto.getDescripcion()+"&precio="+producto.getPrecio()+"&imagen="+producto.getImagen()+"><button type='submit' class='btn btn-primary'>Comprar</button></a></center>"+
+
+                            "        <div class='col-md-12'><center><a href='producto.jsp?id="+producto.getId()+" ><button type='submit' class='btn btn-primary'>Comprar</button></a></center>"+
+
                             "        <br>"+
                             "    </div>"+  
                             "    </div>"+
@@ -137,6 +139,7 @@
              <div style="width:100%; color: #FFFFFF">
                  <br>
                  <div class="col-md-12" style="background-color:#0445B5;">
+                     <br>
                      <div class="col-md-2">
                        <img src="recursos/ucablogo.gif" WIDTH=150 HEIGHT=140 alt="UCAB">
                      </div>

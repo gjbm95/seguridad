@@ -4,6 +4,9 @@
     Author     : Junior
 --%>
 
+<%@page import="Dominio.Sistema"%>
+<%@page import="Dominio.Producto"%>
+<%@page import="DAO.Control"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -31,6 +34,12 @@
         </style>
     </head>
     <body>
+            <%
+                   Sistema.llaveClientVendedor = getServletConfig().getServletContext().getRealPath("seguridad/Vendedor/clientVendedor_ks");
+                   Sistema.llaveServerVendedor = getServletConfig().getServletContext().getRealPath("seguridad/Vendedor/serverVendedor_ks");
+                   Sistema.rutaProductos = getServletConfig().getServletContext().getRealPath("basedatos/productos.xml");
+                   Sistema.rutaUsuarios = getServletConfig().getServletContext().getRealPath("basedatos/usuarios.xml");
+            %>
             <header>
                 <div style=" background-color:#0445B5; overflow-x: hidden;">
                 <div class="container">
@@ -58,28 +67,41 @@
                  
                         <div class="col-md-1"></div>
                         <div class="col-md-10">
-                        <form method="post" action="">
-                        <div>
-                            <div>
-                                <center><label for="">Iniciar Sesión</label></center>
-                            </div>
-                        <label for="">Nombre de usuario:</label>
-                        <input type="user" class="form-control" id="usuario" placeholder="Usuario">
-                        <label for="contrasena">Contraseña:</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
-                        <br>
-                        <center>
-                        <button type="submit" class="btn btn-primary">Ingresar</button>
-                        </center>
-                        </form>
+                        <%  
+                        if(request.getSession().getAttribute("usuario")==null){
+                        out.print("<form method='post' action='procesamiento/iniciarsesion.jsp'>"+
+                        "<div>"+
+                        "    <div>"+
+                        "        <center><label>Iniciar Sesión</label></center>"+
+                        "    </div>"+
+                        "<label >Nombre de usuario:</label>"+
+                        "<input type='user' class='form-control' id='usuario' placeholder='Cedula' name='usuario'>"+
+                        "<label for='contrasena'>Contraseña:</label>"+
+                        "<input type='password' class='form-control' id='exampleInputPassword1' placeholder='Contraseña' name='pwd'>"+
+                        "<br>"+
+                        "<center>"+
+                        "<button type='submit' class='btn btn-primary'>Ingresar</button>"+
+                        "</center>"+
+                        "</form>"
+                        );
+                        }else{
+                         out.print("<div>"
+                                 + "<div><center><IMG SRC='recursos/usuario.png' WIDTH=100 HEIGHT=100></center></div>"
+                                 + "<br>"
+                                 + "<div><center><a href='procesamiento/cerrarsesion.jsp'><button class='btn btn-primary'>Cerrar Sesion</button></a></center></div>"
+                                );
+                        }
+                        %>
                          <br>
-                        </div>
                         </div>
                         <div class="col-md-1"></div>
     
                 </div>
                 </div>
             </header>
+          <% Control almacen = new Control();
+             Producto producto = almacen.obtenerObjetoProducto(Integer.parseInt(request.getParameter("id")));
+          %>
         <div class="container">
             <div style="width:100%; color: #FFFFFF">
                <div class="col-md-12" style="background-color:#005A31;"><strong>Pago del Producto</strong></div>
@@ -88,17 +110,17 @@
                 <br>
                 <br>
                 <div class="col-md-3">
-                    <IMG WIDTH=220 HEIGHT=220 SRC="recursos/imac.jpg">
+                    <IMG WIDTH=220 HEIGHT=220 SRC="<% out.print(producto.getImagen()); %>">
                 </div>
                 <div class="col-md-6">
                     <div class="col-md-12">
                         <div style="font-size: x-large">
-                        <strong>Nombre del Producto</strong>
+                        <strong><% out.print(producto.getNombre()); %></strong>
                         </div>
                     </div>
                     <div class="col-md-12">
                        <div style="font-size: large">
-                           <strong>Precio: 10000 Bs.</strong>
+                           <strong>Precio: <% out.print(producto.getPrecio()); %> Bs.</strong>
                        </div>
                     </div>
                     <div class="col-md-12">

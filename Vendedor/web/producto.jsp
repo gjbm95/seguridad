@@ -4,6 +4,8 @@
     Author     : Junior
 --%>
 
+<%@page import="Dominio.Producto"%>
+<%@page import="DAO.Control"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -58,28 +60,42 @@
                  
                         <div class="col-md-1"></div>
                         <div class="col-md-10">
-                        <form method="post" action="">
-                        <div>
-                            <div>
-                                <center><label for="">Iniciar Sesión</label></center>
-                            </div>
-                        <label for="">Nombre de usuario:</label>
-                        <input type="user" class="form-control" id="usuario" placeholder="Usuario">
-                        <label for="contrasena">Contraseña:</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
-                        <br>
-                        <center>
-                        <button type="submit" class="btn btn-primary">Ingresar</button>
-                        </center>
-                        </form>
+                        <%  
+                        if(request.getSession().getAttribute("usuario")==null){
+                        out.print("<form method='post' action='procesamiento/iniciarsesion.jsp'>"+
+                        "<div>"+
+                        "    <div>"+
+                        "        <center><label>Iniciar Sesión</label></center>"+
+                        "    </div>"+
+                        "<label >Nombre de usuario:</label>"+
+                        "<input type='user' class='form-control' id='usuario' placeholder='Cedula' name='usuario'>"+
+                        "<label for='contrasena'>Contraseña:</label>"+
+                        "<input type='password' class='form-control' id='exampleInputPassword1' placeholder='Contraseña' name='pwd'>"+
+                        "<br>"+
+                        "<center>"+
+                        "<button type='submit' class='btn btn-primary'>Ingresar</button>"+
+                        "</center>"+
+                        "</form>"
+                        );
+                        }else{
+                         out.print("<div>"
+                                 + "<div><center><IMG SRC='recursos/usuario.png' WIDTH=100 HEIGHT=100></center></div>"
+                                 + "<br>"
+                                 + "<div><center><a href='procesamiento/cerrarsesion.jsp'><button class='btn btn-primary'>Cerrar Sesion</button></a></center></div>"
+                                );
+                        }
+                        %>
                          <br>
-                        </div>
                         </div>
                         <div class="col-md-1"></div>
     
                 </div>
                 </div>
             </header>
+         <% Control almacen = new Control();
+         System.out.println("ESTA ES LA ID "+request.getParameter("id"));
+             Producto producto = almacen.obtenerObjetoProducto(Integer.parseInt(request.getParameter("id")));
+          %>
         <div class="container">
             <div style="width:100%; color: #FFFFFF">
                <div class="col-md-12" style="background-color:#005A31;"><strong>Producto</strong></div>
@@ -88,25 +104,25 @@
                 <br>
                 <br>
                 <div class="col-md-3">
-                    <IMG WIDTH=220 HEIGHT=220 SRC=<%= request.getParameter("imagen")%>>
+                    <IMG WIDTH=220 HEIGHT=220 SRC="<% out.print(producto.getImagen()); %>">
                 </div>
                 <div class="col-md-9">
                     <div class="col-md-12">
                         <div style="font-size: x-large">
-                        <strong><%= request.getParameter("nombre")%></strong>
+                        <strong><% out.print(producto.getNombre()); %></strong>
                         </div>
                     </div>
                     <div class="col-md-12">
                        <div style="font-size: large">
-                           <strong><%= request.getParameter("precio")%></strong>
+                           <strong><% out.print(producto.getPrecio()); %></strong>
                        </div>
                     </div>
                     <div class="col-md-12">
-                        <%= request.getParameter("descripcion")%>
+                        <% out.print(producto.getDescripcion()); %>
                     </div>
                     <div class="col-md-12">
                         <hr size="4px" color="black" />
-                        <a href="pagar.jsp"><button type="submit" class="btn btn-primary">Pagar</button></a>
+                        <a href="pagar.jsp?id=<%out.print(request.getParameter("id"));%>"><button type="submit" class="btn btn-primary">Pagar</button></a>
                     </div>
                 </div>
             </div>
