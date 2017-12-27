@@ -38,14 +38,14 @@ public class Productos {
       Control dao= new Control();
       producto=dao.obtenerListaProductos();
       
-        for (Producto prod : producto) {
+       /* for (Producto prod : producto) {
             System.out.println("esta es la id "+prod.getId());
             System.out.println("este es el nombre "+prod.getNombre());
             System.out.println("esta es la descripcion "+prod.getDescripcion());
             System.out.println("este es el precio "+prod.getPrecio());
             System.out.println("esta es la imagen "+prod.getImagen());
             
-        }
+        }*/
     
     
     }

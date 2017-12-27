@@ -111,11 +111,11 @@
                       for(Producto producto : almacen.obtenerListaProductos())
                       {
                          
-                        out.print(""
+                        out.print("<form method='post' action='producto.jsp'>"
                             + ""+
                             "<div class='col-md-4' style='background-color:#005A31;'>"+
                             "<br>"+
-                            "    <div class='col-md-12'>"+
+                            "    <div name='imagen' class='col-md-12'>"+
                             "        <center>"+
                             "         <IMG SRC='"+producto.getImagen()+"' WIDTH=220 HEIGHT=220>"+
                             "        </center>"+
@@ -123,7 +123,7 @@
                             "    <div class='col-md-12' style='color:#ffffff;'>"+
                             "        <div class='col-md-12'><label>"+producto.getNombre()+"</label></div>"+
                             "        <div class='col-md-12'><label>Precio: "+producto.getPrecio()+" Bs.</label></div>"+
-                            "        <div class='col-md-12'><center><a href=''><button type='submit' class='btn btn-primary'>Comprar</button></a></center>"+
+                            "        <div class='col-md-12'><center><a href='producto.jsp?id="+producto.getId()+"&nombre="+producto.getNombre()+"&descripcion="+producto.getDescripcion()+"&precio="+producto.getPrecio()+"&imagen="+producto.getImagen()+"><button type='submit' class='btn btn-primary'>Comprar</button></a></center>"+
                             "        <br>"+
                             "    </div>"+  
                             "    </div>"+
