@@ -26,14 +26,14 @@
             //pro.AgregarProductos();
             //usu.GenerarFactura("2");
             //usu.AgregarCliente();
-            if(usu.IniciarSesion(usuario, pass)==true){
+            if(usu.IniciarSesion(usuario, Integer.toString(pass.hashCode()))==true){
             session.setAttribute("usuario",usuario);
-            response.sendRedirect("http://localhost:8080/Vendedor/");
+            response.sendRedirect("https://garryjunior.com.ve:8443/Vendedor/");
             }else{
             //response.sendRedirect("http://localhost:8080/Vendedor/");
             //Thread.sleep(3000);
             out.print("<script> alert('Usuario o Contrasena Incorrecto');</script>");
-            out.print("<div>mensaje</div> <a href='http://localhost:8080/Vendedor/'> volver </a>");
+            out.print("<div>mensaje</div> <a href='https://garryjunior.com.ve:8443/Vendedor/'> volver </a>");
            
             
             }

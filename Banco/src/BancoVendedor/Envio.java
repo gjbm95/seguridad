@@ -39,20 +39,22 @@ public class Envio {
             Object respuesta =null;
             
               // Set the key store to use for validating the server cert.
-            System.setProperty("javax.net.ssl.trustStore", CLIENT_KEY_STORE);
             //System.setProperty("javax.net.debug", "ssl,handshake");
             
             Socket reves = null;
             if(tipo.equals("bancocliente")){
             CLIENT_KEY_STORE = Sistema.llaveClientBancoCliente;
+             System.setProperty("javax.net.ssl.trustStore", CLIENT_KEY_STORE);
             reves = clientWithCert(Sistema.ipbancoc,Sistema.puertoc);
             }
             if(tipo.equals("bancovendedor")){ 
             CLIENT_KEY_STORE = Sistema.llaveClientBancoVendedor;
+            System.setProperty("javax.net.ssl.trustStore", CLIENT_KEY_STORE);
             reves = clientWithCert(Sistema.ipbancov,Sistema.puertov);
             }
             if(tipo.equals("vendedor")){
             CLIENT_KEY_STORE = Sistema.llaveClientVendedor;
+            System.setProperty("javax.net.ssl.trustStore", CLIENT_KEY_STORE);
             reves = clientWithCert(Sistema.ipvendedor,Sistema.puertovendedor);
             }
             ObjectOutputStream salidaObjeto;      

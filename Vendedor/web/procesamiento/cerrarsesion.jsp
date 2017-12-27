@@ -9,5 +9,5 @@
 <%
 
 session.invalidate();
-response.sendRedirect("http://localhost:8080/Vendedor/");
+response.sendRedirect("https://garryjunior.com.ve:8443/Vendedor/");
 %>

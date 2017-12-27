@@ -32,7 +32,7 @@ public class Envio {
         try {
             Object respuesta =null;
             
-              // Set the key store to use for validating the server cert.
+            // Set the key store to use for validating the server cert.
             //System.setProperty("javax.net.debug", "ssl,handshake");
             
             Socket reves = null;

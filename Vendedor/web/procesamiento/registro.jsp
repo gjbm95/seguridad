@@ -35,7 +35,7 @@
       usu.AgregarCliente(cli);
       //-------------------------------------------
        out.print("<script> alert('Registro Exitoso'); </script>");
-       response.sendRedirect("http://localhost:8080/Vendedor/");
+       response.sendRedirect("https://garryjunior.com.ve:8443/Vendedor/");
     } else {
       out.print("<script> alert('Error en el captcha');  window.history.back();</script>");
     }

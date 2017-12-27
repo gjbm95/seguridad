@@ -117,7 +117,7 @@
                       <input type="password" class="form-control" id="pwd2" name="pwd2" required>
                     </div>
                     <%
-                        ReCaptcha c = ReCaptchaFactory.newReCaptcha("6LeYWT4UAAAAABnQP_9RWZUJtc_w1axpT7F0wln1", "6LeYWT4UAAAAAEgGETIGFadXLo1bUY6XxEXF_Et_", false);
+                        ReCaptcha c = ReCaptchaFactory.newSecureReCaptcha("6LeYWT4UAAAAABnQP_9RWZUJtc_w1axpT7F0wln1", "6LeYWT4UAAAAAEgGETIGFadXLo1bUY6XxEXF_Et_", false);
                         out.print(c.createRecaptchaHtml(null, null));
                     %>
                     <button type="submit" class="btn btn-default">Listo</button>
@@ -138,6 +138,7 @@
               }
             } 
         </script>
+
     </body>
 </html>
 

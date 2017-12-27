@@ -4,6 +4,8 @@
     Author     : Junior
 --%>
 
+<%@page import="Dominio.Producto"%>
+<%@page import="DAO.Control"%>
 <%@page import="Dominio.Sistema"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -101,8 +103,56 @@
         <div class="container">
             <div style="width:100%; color: #FFFFFF">
                 <div class="col-md-12" style="background-color:#005A31;"><strong>Productos</strong></div>
-            </div>
+                <div class="col-md-12">
+                    
+                    <%  
+                     Control almacen = new Control();
+                       out.print("<br>"); 
+                      for(Producto producto : almacen.obtenerListaProductos())
+                      {
+                         
+                        out.print(""
+                            + ""+
+                            "<div class='col-md-4' style='background-color:#005A31;'>"+
+                            "<br>"+
+                            "    <div class='col-md-12'>"+
+                            "        <center>"+
+                            "         <IMG SRC='"+producto.getImagen()+"' WIDTH=220 HEIGHT=220>"+
+                            "        </center>"+
+                            "    </div>"+                      
+                            "    <div class='col-md-12' style='color:#ffffff;'>"+
+                            "        <div class='col-md-12'><label>"+producto.getNombre()+"</label></div>"+
+                            "        <div class='col-md-12'><label>Precio: "+producto.getPrecio()+" Bs.</label></div>"+
+                            "        <div class='col-md-12'><center><a href=''><button type='submit' class='btn btn-primary'>Comprar</button></a></center>"+
+                            "        <br>"+
+                            "    </div>"+  
+                            "    </div>"+
+                            "</div>"
+                            );
+                      }                      
+                    %>
+                </div>
+            </div>   
         </div>
-        
+             <div style="width:100%; color: #FFFFFF">
+                 <br>
+                 <div class="col-md-12" style="background-color:#0445B5;">
+                     <div class="col-md-2">
+                       <img src="recursos/ucablogo.gif" WIDTH=150 HEIGHT=140 alt="UCAB">
+                     </div>
+                     <div class="col-md-10">
+                         <strong>
+                         Integrantes: 
+                         <br>
+                         Garry Jr Bruno / Aquiles Pulido 
+                         <br>
+                         Escuela de Ingenieria Informatica 
+                         <br>
+                         Seguridad Computacional 
+                         </strong>
+                     </div>
+                     
+                 </div>       
+            </div>  
     </body>
 </html>

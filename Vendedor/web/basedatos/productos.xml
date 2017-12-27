@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-
-
 <root>
-    
+  <producto id="1" nombre="Audifonos" descripcion="Con un audio magnifico" precio="405.0" imagen="recursos/audifonos.png" />
+  <producto id="2" nombre="Camisa" descripcion="De muy buena calidad, muy comoda" precio="700.0" imagen="recursos/camisa.png" />
+  <producto id="3" nombre="Celular" descripcion="Uno de los mas novedosos equipos del momento, deber tenerlo" precio="405.0" imagen="recursos/celular.png" />
+  <producto id="4" nombre="Computadora" descripcion="Potente maquina que cumple todas tus necesidades" precio="300.0" imagen="recursos/computadora.png" />
+  <producto id="5" nombre="Pantalon" descripcion="Muy comodos y se adaptan a tu figura" precio="200.0" imagen="recursos/pantalon.png" />
+  <producto id="6" nombre="Zapatos" descripcion="De lo mas a la moda que puedes encontrar" precio="900.0" imagen="recursos/zapatos.png" />
 </root>
+
