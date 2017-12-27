@@ -4,6 +4,8 @@
     Author     : Junior
 --%>
 
+<%@page import="net.tanesha.recaptcha.ReCaptchaFactory"%>
+<%@page import="net.tanesha.recaptcha.ReCaptcha"%>
 <%@page import="Dominio.Sistema"%>
 <%@page import="Dominio.Producto"%>
 <%@page import="DAO.Control"%>
@@ -113,6 +115,7 @@
                     <IMG WIDTH=220 HEIGHT=220 SRC="<% out.print(producto.getImagen()); %>">
                 </div>
                 <div class="col-md-6">
+                    <form action="procesamiento/pagar.jsp" method="post"  onsubmit="">
                     <div class="col-md-12">
                         <div style="font-size: x-large">
                         <strong><% out.print(producto.getNombre()); %></strong>
@@ -125,34 +128,116 @@
                     </div>
                     <div class="col-md-12">
                     <div class="form-group">
+                        <hr size="4px" color="black" />
+                      <label for="text" style="font-size: large">Datos de la Tarjeta:</label>
+                    </div>     
+                    <div class="form-group">
+                      <hr size="4px" color="black" />
                       <label for="num">Numero de Tajeta:</label>
-                      <input type="num" class="form-control" id="num">
+                      <input  type="password" class="form-control" id="num">
                     </div>
                     <div class="form-group">
                       <label for="tipo">Código de Seguridad:</label>
-                      <input type="tipo" class="form-control" id="tipo">
-                    </div>  
-                    <div class="form-group">
-                      <label for="email">Correo electrónico:</label>
-                      <input type="email" class="form-control" id="email">
+                      <input  type="password" class="form-control" id="tipo">
                     </div>
                     <div class="form-group">
-                      <label for="email">Tipo de Tarjeta:</label>
+                      <label for="tarjeta">Tipo de Tarjeta:</label>
                       <select class="selectpicker">
                         <option>Visa</option>
                         <option>MasterCard</option>
-                        <option>American Express</option>
                       </select>
-
+                      <IMG WIDTH=100 HEIGHT=40 SRC="recursos/visaMaster.png">
                     </div>
+                    <div class="form-group">
+                      <label for="tipo">Fecha de Vencimiento:</label>
+                      <div class='input-group date' id='datetimepicker1'>
+                      <input type='text' class="form-control" />
+                      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                     </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="text" style="font-size: large">Datos del titular de la Cuenta Bancaria a Debitar:</label>
+                      <hr size="4px" color="black" />
+                    </div>    
+                    <div class="form-group">
+                      <label for="text">Nombre:</label>
+                      <input type="text" class="form-control" id="name">
+                    </div>
+                    <div class="form-group">
+                      <label for="text">Apellido:</label>
+                      <input type="text" class="form-control" id="lastname">
+                    </div>
+                    <div class="form-group">
+                      <label for="text">Cedula:</label>
+                      <input type="num" class="form-control" id="cedula">
+                    </div>      
+                    <div class="form-group">
+                      <label for="email">Correo electrónico:</label>
+                      <input type="email" class="form-control" id="email">
+                    </div> 
+                    <%
+                        ReCaptcha c = ReCaptchaFactory.newSecureReCaptcha("6LeYWT4UAAAAABnQP_9RWZUJtc_w1axpT7F0wln1", "6LeYWT4UAAAAAEgGETIGFadXLo1bUY6XxEXF_Et_", false);
+                        out.print(c.createRecaptchaHtml(null, null));
+                    %>
                     </div>
                     <div class="col-md-12">
                         <hr size="4px" color="black" />
                         <button type="submit" class="btn btn-primary">Pagar</button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
-        
+                
+                    <script>                
+                                           $(function () {
+                       var bindDatePicker = function() {
+                                    $(".date").datetimepicker({
+                            format:'YYYY-MM-DD',
+                                            icons: {
+                                                    time: "fa fa-clock-o",
+                                                    date: "fa fa-calendar",
+                                                    up: "fa fa-arrow-up",
+                                                    down: "fa fa-arrow-down"
+                                            }
+                                    }).find('input:first').on("blur",function () {
+                                            // check if the date is correct. We can accept dd-mm-yyyy and yyyy-mm-dd.
+                                            // update the format if it's yyyy-mm-dd
+                                            var date = parseDate($(this).val());
+
+                                            if (! isValidDate(date)) {
+                                                    //create date based on momentjs (we have that)
+                                                    date = moment().format('YYYY-MM-DD');
+                                            }
+
+                                            $(this).val(date);
+                                    });
+                            }
+
+                       var isValidDate = function(value, format) {
+                                    format = format || false;
+                                    // lets parse the date to the best of our knowledge
+                                    if (format) {
+                                            value = parseDate(value);
+                                    }
+
+                                    var timestamp = Date.parse(value);
+
+                                    return isNaN(timestamp) == false;
+                       }
+
+                       var parseDate = function(value) {
+                                    var m = value.match(/^(\d{1,2})(\/|-)?(\d{1,2})(\/|-)?(\d{4})$/);
+                                    if (m)
+                                            value = m[5] + '-' + ("00" + m[3]).slice(-2) + '-' + ("00" + m[1]).slice(-2);
+
+                                    return value;
+                       }
+
+                       bindDatePicker();
+                     });
+                      </script>
+                    
     </body>
 </html>

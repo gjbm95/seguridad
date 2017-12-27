@@ -123,7 +123,7 @@
                             "    <div class='col-md-12' style='color:#ffffff;'>"+
                             "        <div class='col-md-12'><label>"+producto.getNombre()+"</label></div>"+
                             "        <div class='col-md-12'><label>Precio: "+producto.getPrecio()+" Bs.</label></div>"+
-                            "        <div class='col-md-12'><center><a href='producto.jsp'><button type='submit' class='btn btn-primary'>Comprar</button></a></center>"+
+                            "        <div class='col-md-12'><center><a href='producto.jsp?id="+producto.getId()+"'><button type='submit' class='btn btn-primary'>Comprar</button></a></center>"+
                             "        <br>"+
                             "    </div>"+  
                             "    </div>"+
