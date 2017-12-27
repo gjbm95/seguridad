@@ -11,7 +11,9 @@
 <%@ page import="net.tanesha.recaptcha.ReCaptchaResponse" %>
 <!DOCTYPE html>
 <% 
- 
+    /*Productos prod=new Productos();
+    prod.EliminarProductos(1);*/
+    
     String nombre= (String) request.getParameter("name");
     String apellido= (String) request.getParameter("lastname");
     String cedula = (String) request.getParameter("cedula");
@@ -27,9 +29,10 @@
     ReCaptchaResponse reCaptchaResponse = reCaptcha.checkAnswer(remoteAddr, challenge, uresponse);
     if (reCaptchaResponse.isValid()) {
       
-      new Cliente(nombre,apellido, cedula,email,Integer.toString(contrasena.hashCode())); 
+      Cliente cli=new Cliente(nombre,apellido, cedula,email,Integer.toString(contrasena.hashCode())); 
       //LLamada a DAO
-      
+      Usuario usu=new Usuario();
+      usu.AgregarCliente(cli);
       //-------------------------------------------
        out.print("<script> alert('Registro Exitoso'); </script>");
        response.sendRedirect("http://localhost:8080/Vendedor/");

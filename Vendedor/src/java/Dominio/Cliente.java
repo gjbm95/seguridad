@@ -10,11 +10,11 @@ package Dominio;
  * @author Junior
  */
 public class Cliente {
-     String nombre; 
-     String apellido; 
-     String cedula; 
-     String correo; 
-     String contrasena; 
+    private String nombre; 
+    private String apellido; 
+    private String cedula; 
+    private String correo; 
+    private String contrasena;
 
     public Cliente() {
     }
@@ -26,6 +26,8 @@ public class Cliente {
         this.correo = correo;
         this.contrasena = contrasena;
     }
+    
+    
      
     public String getNombre() {
         return nombre;
@@ -46,6 +48,8 @@ public class Cliente {
     public String getCedula() {
         return cedula;
     }
+    
+    
 
     public void setCedula(String cedula) {
         this.cedula = cedula;
@@ -66,6 +70,8 @@ public class Cliente {
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
+    
+    
      
      
 }

@@ -11,4 +11,43 @@ package Dominio;
  */
 public class Factura {
     
+    private int id;
+    private Producto producto;
+    
+
+    public Factura() {
+    }
+
+    public Factura(int id, Producto producto) {
+        this.id = id;
+        this.producto = producto;
+    }
+    
+    
+    
+    public Factura(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+    
+    
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
+    
+    
 }

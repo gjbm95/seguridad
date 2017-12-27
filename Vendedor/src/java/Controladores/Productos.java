@@ -5,17 +5,30 @@
  */
 package Controladores;
 
+import Dominio.*;
+import DAO.*;
+
 /**
  *
  * @author Junior
  */
 public class Productos {
     
-    public static void obtenerProductos(){
-      
-    
-    
+    public void AgregarProductos() {
+      Producto producto= new Producto(1,"fruta","es buena",405);
+      Control dao= new Control();
+      dao.crearXMLProducto();
+      dao.agregarProducto(producto);
     
     }
+    public void EliminarProductos(int id)
+    {
+      Control dao= new Control();
+      dao.eliminarProducto(id);
+    
+    }
+    
+    
+    
     
 }
