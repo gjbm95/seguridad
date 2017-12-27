@@ -277,6 +277,17 @@ public class Control {
       return null; 
     }
     
+        /*
+     Retorna el producto con dicha id
+    */
+    public Producto obtenerObjetoProducto(int id){
+                for (Producto producto : this.obtenerListaProductos()){
+                   if (producto.getId() == id)
+                       return producto;
+                } 
+      return null; 
+    }
+   
     /*
      Retorna el cliente por su cedula
     */
