@@ -97,8 +97,15 @@
           %>
         <div class="container">
             <div style="width:100%; color: #FFFFFF">
-               <div class="col-md-12" style="background-color:#005A31;"><strong>Producto</strong></div>
+               <div class="col-md-12" style="background-color:#005A31;"><strong>producto</strong></div>
             </div>
+            
+            <div style="width:100%; color: #0445B5;">
+            <center>
+            <h1 style="font-family:verdana; font-size:300%;">Comprado Exitosamente</h1>
+            </center>
+            </div>
+            <div style="font-size:300%;"  class="bottom"></div>
             <div style="width:100%;">
                 <br>
                 <br>
@@ -118,10 +125,6 @@
                     </div>
                     <div class="col-md-12">
                         <% out.print(producto.getDescripcion()); %>
-                    </div>
-                    <div class="col-md-12">
-                        <hr size="4px" color="black" />
-                        <a href="pagar.jsp?id=<%out.print(request.getParameter("id"));%>"><button type="submit" class="btn btn-primary">Pagar</button></a>
                     </div>
                 </div>
             </div>
