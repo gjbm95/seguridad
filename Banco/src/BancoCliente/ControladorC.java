@@ -68,7 +68,12 @@ public class ControladorC {
             System.out.println("La cedula es "+cuenta.getCedula());
             System.out.println("El numero de cuenta es "+cuenta.getNumerocuenta());
             System.out.println("El tipo de cuenta es "+cuenta.getTipocuenta());
-            System.out.println("El saldo en la cuenta es "+cuenta.getSaldo());
+            System.out.println("El saldo en la cuenta es "+cuenta.getSaldo() + " Bs.");
+            System.out.println("El saldo en la tarjeta es "+cuenta.getTarjeta().getSaldo() + " Bs.");
+            System.out.println("------------------------------------------------------------------------");
+            System.out.println("Presione una tecla para continuar...");
+            Scanner pauser = new Scanner (System.in);
+            pauser.nextLine();             
           }else{ 
            System.out.println("Consulta Fallida!. Hay uno o mas datos erroneos!");
            

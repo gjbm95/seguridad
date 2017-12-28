@@ -146,7 +146,6 @@ public class DaoCliente {
         Document document = null;
         if(xmlFile.exists()) {
             try {
-                System.out.println("entro en el if");
                 // try to load document from xml file if it exist
                 // create a file input stream
                 FileInputStream fis = new FileInputStream(xmlFile);
@@ -161,7 +160,6 @@ public class DaoCliente {
                     List nodos = root.getChildren("cuenta");
                     aux = obtenerTarjeta(nodos,id,codigo);
                     if(aux != null) {
-                        System.out.println("entro en el if de aux");
                         resultado =  new Cuenta(aux.getAttributeValue("nombre")
                                  ,aux.getAttributeValue("apellido")
                                  ,aux.getAttributeValue("cedula")

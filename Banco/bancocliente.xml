@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <banco>
-  <cuenta nombre="Garry" apellido="Bruno" cedula="24939724" numero="463728495837206462743" tipo="Corriente" saldo="500000.0">
-    <tarjeta numero="560871670" marca="Visa" codigo="4563" clave="1234" saldo="0.0" fecha_vencimiento="02/21" />
-  </cuenta>
   <cuenta nombre="Aquiles" apellido="Pulido" cedula="24782343" numero="283649687512457857320" tipo="Ahorro" saldo="500000.0">
     <tarjeta numero="-1708904157" marca="Master Card" codigo="8675" clave="5678" saldo="0.0" fecha_vencimiento="05/22" />
   </cuenta>
-<<<<<<< HEAD
-=======
-  <cuenta nombre="Garry" apellido="Bruno" cedula="24939724" numero="463728495837206462743" tipo="Corriente" saldo="1000000.0">
+  <cuenta nombre="Garry" apellido="Bruno" cedula="24939724" numero="463728495837206462743" tipo="Corriente" saldo="500000.0">
     <tarjeta numero="560871670" marca="Visa" codigo="4563" clave="1234" saldo="405.0" fecha_vencimiento="02/21" />
   </cuenta>
->>>>>>> a24262ec6faf8b2fcf0d9aa1624473edf46a2736
 </banco>
 

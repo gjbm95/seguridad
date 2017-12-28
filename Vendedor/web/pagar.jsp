@@ -151,7 +151,7 @@
                         <option>Visa</option>
                         <option>MasterCard</option>
                       </select>
-                      <IMG WIDTH=100 HEIGHT=40 SRC="recursos/visaMaster.png">
+                      <IMG WIDTH=120 HEIGHT=40 SRC="recursos/visaMaster.png">
                     </div>
                     <div class="form-group">
                       <label for="tipo">Fecha de Vencimiento:</label>
