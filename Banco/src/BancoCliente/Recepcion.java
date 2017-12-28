@@ -10,6 +10,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -75,7 +77,7 @@ public class Recepcion extends Thread {
                recibo.close();//Se finaliza la conexión con el cliente
            } catch (IOException | ClassNotFoundException ex) {
                System.out.println("Hay un error de Conexion! o Ocurrio un error en la solicitud recibida: " + mensaje);
-               //Logger.getLogger(GestionSolicitudes.class.getName()).log(Level.SEVERE, null, ex);
+               Logger.getLogger(Recepcion.class.getName()).log(Level.SEVERE, null, ex);
            }
         
     }

@@ -182,6 +182,61 @@ public class DaoVendedor {
     /*
      Devuelve una cuenta en base a la Tarjeta de un cliente
     */
+    public Cuenta obtenerCuentaCedula(String cedula){
+       File xmlFile = new File(filelocation);
+        Document document = null;
+        if(xmlFile.exists()) {
+            try {
+                // try to load document from xml file if it exist
+                // create a file input stream
+                FileInputStream fis = new FileInputStream(xmlFile);
+                // create a sax builder to parse the document
+                SAXBuilder sb = new SAXBuilder();
+                // parse the xml content provided by the file input stream and create a Document object
+                document = sb.build(fis);
+                // get the root element of the document
+                root = document.getRootElement();
+                Cuenta resultado = null;
+                    Element aux = new Element("cuenta");
+                    List nodos = root.getChildren("cuenta");
+                    aux = obtenerCuentacedula(nodos,cedula);
+                    if(aux != null) {
+                        resultado =  new Cuenta(aux.getAttributeValue("nombre")
+                                 ,aux.getAttributeValue("apellido")
+                                 ,aux.getAttributeValue("cedula")
+                                 ,aux.getAttributeValue("numero")
+                                 ,aux.getAttributeValue("tipo"),
+                                 Float.parseFloat(aux.getAttributeValue("saldo")));
+                        Element tar = aux.getChild("tarjeta");
+                        resultado.setTarjeta(new Tarjeta(tar.getAttributeValue("numero"),tar.getAttributeValue("marca"),tar.getAttributeValue("codigo"),Integer.parseInt(tar.getAttributeValue("clave")),Float.parseFloat(tar.getAttributeValue("saldo")),tar.getAttributeValue("fecha_vencimiento")));
+                    }
+                fis.close();
+                return resultado; 
+            } catch (JDOMException ex) {
+                Logger.getLogger(DaoVendedor.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(DaoVendedor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+         } 
+
+        return null; 
+    }
+    
+    public Element obtenerCuentacedula(List raiz,String cedula){
+        
+         Iterator i = raiz.iterator();
+          while (i.hasNext()) {
+            //System.out.println("i tiene algo");
+            Element e = (Element) i.next();
+            if (cedula.equals(e.getAttributeValue("cedula"))) {
+                return e;
+            }
+        }
+      return null; 
+    }
+    /*
+     Devuelve una cuenta en base a la Tarjeta de un cliente
+    */
     public Cuenta obtenerCuenta(String id){
        File xmlFile = new File(filelocation);
         Document document = null;

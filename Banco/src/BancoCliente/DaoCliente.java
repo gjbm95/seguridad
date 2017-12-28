@@ -141,11 +141,12 @@ public class DaoCliente {
     /*
      Devuelve una cuenta en base a la Tarjeta de un cliente
     */
-    public Cuenta obtenerCuenta(int id,String codigo,String vence){
+    public Cuenta obtenerCuenta(String id,String codigo,String vence){
        File xmlFile = new File(filelocation);
         Document document = null;
         if(xmlFile.exists()) {
             try {
+                System.out.println("entro en el if");
                 // try to load document from xml file if it exist
                 // create a file input stream
                 FileInputStream fis = new FileInputStream(xmlFile);
@@ -160,6 +161,7 @@ public class DaoCliente {
                     List nodos = root.getChildren("cuenta");
                     aux = obtenerTarjeta(nodos,id,codigo);
                     if(aux != null) {
+                        System.out.println("entro en el if de aux");
                         resultado =  new Cuenta(aux.getAttributeValue("nombre")
                                  ,aux.getAttributeValue("apellido")
                                  ,aux.getAttributeValue("cedula")
@@ -223,6 +225,50 @@ public class DaoCliente {
 
         return null; 
     }
+    
+    
+    /*
+     Devuelve una cuenta en base a la Tarjeta de un cliente
+    */
+    public Cuenta obtenerCuentaCedula(String cedula){
+       File xmlFile = new File(filelocation);
+        Document document = null;
+        if(xmlFile.exists()) {
+            try {
+                // try to load document from xml file if it exist
+                // create a file input stream
+                FileInputStream fis = new FileInputStream(xmlFile);
+                // create a sax builder to parse the document
+                SAXBuilder sb = new SAXBuilder();
+                // parse the xml content provided by the file input stream and create a Document object
+                document = sb.build(fis);
+                // get the root element of the document
+                root = document.getRootElement();
+                Cuenta resultado = null;
+                    Element aux = new Element("cuenta");
+                    List nodos = root.getChildren("cuenta");
+                    aux = obtenerCuentacedula(nodos,cedula);
+                    if(aux != null) {
+                        resultado =  new Cuenta(aux.getAttributeValue("nombre")
+                                 ,aux.getAttributeValue("apellido")
+                                 ,aux.getAttributeValue("cedula")
+                                 ,aux.getAttributeValue("numero")
+                                 ,aux.getAttributeValue("tipo"),
+                                 Float.parseFloat(aux.getAttributeValue("saldo")));
+                        Element tar = aux.getChild("tarjeta");
+                        resultado.setTarjeta(new Tarjeta(tar.getAttributeValue("numero"),tar.getAttributeValue("marca"),tar.getAttributeValue("codigo"),Integer.parseInt(tar.getAttributeValue("clave")),Float.parseFloat(tar.getAttributeValue("saldo")),tar.getAttributeValue("fecha_vencimiento")));
+                    }
+                fis.close();
+                return resultado; 
+            } catch (JDOMException ex) {
+                Logger.getLogger(DaoVendedor.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(DaoVendedor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+         } 
+
+        return null; 
+    }
    /**
     * Permite localizar un archivo por su nombre en hash
     * @param nombre
@@ -243,20 +289,19 @@ public class DaoCliente {
     /*
      Retorna la cuenta de un usuario 
     */
-    public Element obtenerTarjeta(List raiz,int id,String codigo){
-        
+    public Element obtenerTarjeta(List raiz,String id,String codigo){
          Iterator i = raiz.iterator();
           while (i.hasNext()) {
             Element e = (Element) i.next();
             Element tarjeta = e.getChild("tarjeta"); 
-            if ((id==Integer.parseInt(tarjeta.getAttributeValue("numero")))&&(codigo.equals(tarjeta.getAttributeValue("codigo")))) {
+            if ((id.equals(tarjeta.getAttributeValue("numero")))&&(codigo.equals(tarjeta.getAttributeValue("codigo")))) {
                 return e;
             }
         }
       return null; 
     }
     
-        /*
+    /*
      Retorna la cuenta de un usuario 
     */
     public Element obtenerCuenta(List raiz,String id){
@@ -266,6 +311,19 @@ public class DaoCliente {
             //System.out.println("i tiene algo");
             Element e = (Element) i.next();
             if (id.equals(e.getAttributeValue("numero"))) {
+                return e;
+            }
+        }
+      return null; 
+    }
+    
+    public Element obtenerCuentacedula(List raiz,String cedula){
+        
+         Iterator i = raiz.iterator();
+          while (i.hasNext()) {
+            //System.out.println("i tiene algo");
+            Element e = (Element) i.next();
+            if (cedula.equals(e.getAttributeValue("cedula"))) {
                 return e;
             }
         }

@@ -27,7 +27,8 @@ public class VistaV {
             String i = sc.nextLine();
             switch(i){
             case "1":{
-               
+               ControladorV cont= new ControladorV();
+               cont.ConocerSaldo();
             break;
             }
             case "3": {

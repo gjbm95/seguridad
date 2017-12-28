@@ -7,6 +7,7 @@ package BancoVendedor;
 
 import BancoVendedor.DaoVendedor;
 import Dominio.Cuenta;
+import java.util.Scanner;
 
 /**
  *
@@ -41,5 +42,32 @@ public class ControladorV {
            System.out.println("Transferencia Fallida!. Hay un dato erroneo!");
            return false; 
           }
+      }
+      
+      public void ConocerSaldo(){
+      
+        Scanner sc = new Scanner(System.in); 
+
+        System.out.println("Por favor ingrese la cedula");
+
+          String cedula = sc.nextLine(); 
+          
+          while(cedula.trim().length()==0){
+          System.out.println("Por favor ingrese la cedula");
+          cedula = sc.nextLine(); 
+        }
+        
+        Cuenta cuenta = new DaoVendedor().obtenerCuentaCedula(cedula);
+        
+        if(cuenta != null){
+            System.out.println("La cuenta esta a nombre de "+cuenta.getNombre()+cuenta.getApellido());
+            System.out.println("La cedula es "+cuenta.getCedula());
+            System.out.println("El numero de cuenta es "+cuenta.getNumerocuenta());
+            System.out.println("El tipo de cuenta es "+cuenta.getTipocuenta());
+            System.out.println("El saldo en la cuenta es "+cuenta.getSaldo());
+          }else{ 
+           System.out.println("Consulta Fallida!. El dato es erroneo !");
+          }
+       
       }
 }
