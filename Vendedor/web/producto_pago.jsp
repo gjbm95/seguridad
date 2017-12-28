@@ -62,7 +62,7 @@
                         <div class="col-md-10">
                         <%  
                         if(request.getSession().getAttribute("usuario")==null){
-                        out.print("<form method='post' action='procesamiento/iniciarsesion.jsp'>"+
+                        out.print("<form method='post' action='iniciarsesion.jsp'>"+
                         "<div>"+
                         "    <div>"+
                         "        <center><label>Iniciar Sesión</label></center>"+

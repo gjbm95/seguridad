@@ -60,15 +60,15 @@
                  
                         <div class="col-md-1"></div>
                         <div class="col-md-10">
-                        <form method="post" action="">
+                        <form method="post" action="iniciarsesion.jsp">
                         <div>
                             <div>
                                 <center><label for="">Iniciar Sesión</label></center>
                             </div>
                         <label for="">Nombre de usuario:</label>
-                        <input type="user" class="form-control" id="usuario" placeholder="Usuario">
+                        <input type="user" class="form-control" id="usuario" placeholder="Usuario" name="usuario">
                         <label for="contrasena">Contraseña:</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña" name="pwd">
                         <br>
                         <center>
                         <button type="submit" class="btn btn-primary">Ingresar</button>
@@ -110,11 +110,11 @@
                     </div>
                     <div class="form-group">
                       <label for="pwd">Ingrese una contraseña: </label>
-                      <input type="password" class="form-control" id="pwd" name="pwd" required>
+                      <input type="password" class="form-control" id="pwd" name="pwd" minlength="8" required>
                     </div>
                     <div class="form-group">
                       <label for="pwd">Repita la contraseña: </label>
-                      <input type="password" class="form-control" id="pwd2" name="pwd2" required>
+                      <input type="password" class="form-control" id="pwd2" name="pwd2" minlength="8" required>
                     </div>
                     <%
                         ReCaptcha c = ReCaptchaFactory.newSecureReCaptcha("6LeYWT4UAAAAABnQP_9RWZUJtc_w1axpT7F0wln1", "6LeYWT4UAAAAAEgGETIGFadXLo1bUY6XxEXF_Et_", false);
@@ -130,13 +130,44 @@
         
         <script>     
             function validar(){
-              if(document.getElementById("pwd").value===document.getElementById("pwd2").value){ 
-                  return true; 
+              if((document.getElementById("pwd").value===document.getElementById("pwd2").value)){ 
+                  if(tiene_mayusculas(document.getElementById("pwd").value))
+                  {
+                     if (tiene_noalfanumericos(document.getElementById("pwd").value))
+                     {
+                       return true;  
+                     }else{
+                       alert("La contraseña debe tener almenos un caracter no alfanumerico");
+                       return false;
+                     }
+                  }else{
+                    alert("La contraseña al menos debe tener una letra en Mayuscula!");
+                    return false;
+                  }
               }else{
                   alert("Las contrasenas son distintas!");
                   return false;
               }
             } 
+            var letras_mayusculas="ABCDEFGHYJKLMNÑOPQRSTUVWXYZ";
+            function tiene_mayusculas(texto){
+               for(i=0; i<texto.length; i++){
+                  if (letras_mayusculas.indexOf(texto.charAt(i),0)!=-1){
+                     return true;
+                  }
+               }
+               return false;
+            }
+            var noalfanumericos="|@#~€¬=)(/&%$·!ª¨^*Ç{[]}-.,+<>";
+            function tiene_noalfanumericos(texto){
+               for(i=0; i<texto.length; i++){
+                  if (noalfanumericos.indexOf(texto.charAt(i),0)!=-1){
+                     return true;
+                  }
+               }
+               return false;
+            }
+            
         </script>
 
     </body>

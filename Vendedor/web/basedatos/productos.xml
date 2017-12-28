@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
-  <producto id="1" nombre="Audifonos" descripcion="Con un audio magnifico" precio="405.0" imagen="recursos/audifonos.png" />
-  <producto id="2" nombre="Camisa" descripcion="De muy buena calidad, muy comoda" precio="700.0" imagen="recursos/camisa.png" />
-  <producto id="3" nombre="Celular" descripcion="Uno de los mas novedosos equipos del momento, deber tenerlo" precio="405.0" imagen="recursos/celular.png" />
-  <producto id="4" nombre="Computadora" descripcion="Potente maquina que cumple todas tus necesidades" precio="300.0" imagen="recursos/computadora.png" />
-  <producto id="5" nombre="Pantalon" descripcion="Muy comodos y se adaptan a tu figura" precio="200.0" imagen="recursos/pantalon.png" />
-  <producto id="6" nombre="Zapatos" descripcion="De lo mas a la moda que puedes encontrar" precio="900.0" imagen="recursos/zapatos.png" />
+  <producto id="1" nombre="Audifonos" descripcion="El diseno cerado de la copa cubre toda la oreja y corta el sonido externo de manera muy efectiva.
+El microfono condensador omnidireccional puede captar todos los detalles hablando con precision, sonido estereo de calidad de juego." precio="405.0" imagen="recursos/audifonos.png" />
+  <producto id="2" nombre="Camisa" descripcion="95% poliester, 5% spandex,importado,lavar a maquina.
+Este polo clasico te mantiene fresco y comodo en un tejido de secado rapido que absorbe la humedad. El tejido Tech-stretch tiene una sensacion suave y flexible. Proporciona proteccion solar UPF. " precio="700.0" imagen="recursos/camisa.png" />
+  <producto id="3" nombre="Celular" descripcion="Pantalla Infinity: pantalla sin bordes, totalmente frontal y de borde a borde.
+La resolucion predeterminada es Full HD y se puede cambiar a Quad HD en la configuracion.
+Memoria: memoria interna de 64 GB, RAM 4 GB.
+Resolucion de la camara - Delantera: 8MP AF, Posterior 12 MP AF." precio="405.0" imagen="recursos/celular.png" />
+  <producto id="4" nombre="Computadora" descripcion="Sistema operativo: Windows 10 Home Edition.
+Monitor LCD de 17 pulgadas, teclado y mouse.
+Core 2 Duo 3.0 Ghz-GB RAM- 160GB SATA HDD-DVD RW" precio="300.0" imagen="recursos/computadora.png" />
+  <producto id="5" nombre="Pantalon" descripcion="Materiales: Poliestes y spandex, los pantalones son muy suaves y comodos.
+Caracteristicas: Parte posterior con cremallera, cintura alta, Streathy, largo,pierna ancha.
+Uso: trabajo, tarde,casual,fiesta,etc." precio="200.0" imagen="recursos/pantalon.png" />
+  <producto id="6" nombre="Zapatos" descripcion="Suela sintetica, el eje mide aproximadamente la parte superior baja del arco, zapatilla con cordones y ojale de metal con rayas en la entresuela y logo bordado en el panel" precio="900.0" imagen="recursos/zapatos.png" />
 </root>
-

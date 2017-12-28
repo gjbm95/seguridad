@@ -44,7 +44,7 @@
                 <div style=" background-color:#0445B5; overflow-x: hidden;">
                 <div class="container">
                 <div class="col-md-3">
-                    <a href="procesamiento/iniciarsesion.jsp"><img src="recursos/logo.png" alt="tiendaUCAB"></a>
+                    <a href="index.jsp"><img src="recursos/logo.png" alt="tiendaUCAB"></a>
                 </div>
                 <div class="col-md-5">
                     <center>
@@ -69,20 +69,21 @@
                         <div class="col-md-10">
                         <%  
                         if(request.getSession().getAttribute("usuario")==null){
-                        out.print("<form method='post' action='procesamiento/iniciarsesion.jsp'>"+
+                        out.print("<form method='post' action='iniciarsesion.jsp'>"+
                         "<div>"+
                         "    <div>"+
                         "        <center><label>Iniciar Sesión</label></center>"+
                         "    </div>"+
                         "<label >Nombre de usuario:</label>"+
-                        "<input type='user' class='form-control' id='usuario' placeholder='Cedula' name='usuario'>"+
+                        "<input type='user' class='form-control' placeholder='Cedula' name='usuario'>"+
                         "<label for='contrasena'>Contraseña:</label>"+
                         "<input type='password' class='form-control' id='exampleInputPassword1' placeholder='Contraseña' name='pwd'>"+
                         "<br>"+
                         "<center>"+
                         "<button type='submit' class='btn btn-primary'>Ingresar</button>"+
                         "</center>"+
-                        "</form>"
+                        "</div>"
+                        + "</form>"
                         );
                         }else{
                          out.print("<div>"

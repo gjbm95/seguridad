@@ -4,6 +4,8 @@
     Author     : Junior
 --%>
 
+<%@page import="net.tanesha.recaptcha.ReCaptchaFactory"%>
+<%@page import="net.tanesha.recaptcha.ReCaptcha"%>
 <%@page import="Dominio.Sistema"%>
 <%@page import="Dominio.Producto"%>
 <%@page import="DAO.Control"%>
@@ -33,8 +35,8 @@
                   }
         </style>
     </head>
-    <body>
-                    <%
+    <body>    
+        <%
                    Sistema.llaveClientVendedor = getServletConfig().getServletContext().getRealPath("seguridad/Vendedor/clientVendedor_ks");
                    Sistema.llaveServerVendedor = getServletConfig().getServletContext().getRealPath("seguridad/Vendedor/serverVendedor_ks");
                    Sistema.rutaProductos = getServletConfig().getServletContext().getRealPath("basedatos/productos.xml");
@@ -69,13 +71,13 @@
                         <div class="col-md-10">
                         <%  
                         if(request.getSession().getAttribute("usuario")==null){
-                        out.print("<form method='post' action='iniciarsesion.jsp'>"+
+                        out.print("<form method='post' action='procesamiento/iniciarsesion.jsp'>"+
                         "<div>"+
                         "    <div>"+
                         "        <center><label>Iniciar Sesión</label></center>"+
                         "    </div>"+
                         "<label >Nombre de usuario:</label>"+
-                        "<input type='text' class='form-control' placeholder='Cedula' name='usuario'>"+
+                        "<input type='user' class='form-control' id='usuario' placeholder='Cedula' name='usuario'>"+
                         "<label for='contrasena'>Contraseña:</label>"+
                         "<input type='password' class='form-control' id='exampleInputPassword1' placeholder='Contraseña' name='pwd'>"+
                         "<br>"+
@@ -99,37 +101,38 @@
                 </div>
                 </div>
             </header>
-         <% Control almacen = new Control();
-             Producto producto = almacen.obtenerObjetoProducto(Integer.parseInt(request.getParameter("id")));
-          %>
         <div class="container">
             <div style="width:100%; color: #FFFFFF">
-               <div class="col-md-12" style="background-color:#005A31;"><strong>Producto</strong></div>
+               <div class="col-md-12" style="background-color:#005A31;"><strong>Iniciar Sesion</strong></div>
             </div>
             <div style="width:100%;">
                 <br>
                 <br>
-                <div class="col-md-3">
-                    <IMG WIDTH=220 HEIGHT=220 SRC="<% out.print(producto.getImagen()); %>">
-                </div>
-                <div class="col-md-9">
-                    <div class="col-md-12">
-                        <div style="font-size: x-large">
-                        <strong><% out.print(producto.getNombre()); %></strong>
+                <div class="col-md-12">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                   <form method='post' action='procesamiento/iniciarsesion.jsp'>
+                        <div>
+                            <div>
+                                <center><label>Iniciar Sesión</label></center>
+                            </div>
+                        <label >Nombre de usuario:</label>
+                        <input type='user' class='form-control' id='usuario' placeholder='Cedula' name='usuario' value="<% out.print(request.getParameter("usuario")); %>">
+                        <label for='contrasena'>Contraseña:</label>
+                        <input type='password' class='form-control' id='exampleInputPassword1' placeholder='Contraseña' name='pwd' value="<% out.print(request.getParameter("pwd")); %>">
+                        <br>
+                        <center>
+                        <%
+                        ReCaptcha c = ReCaptchaFactory.newSecureReCaptcha("6LeYWT4UAAAAABnQP_9RWZUJtc_w1axpT7F0wln1", "6LeYWT4UAAAAAEgGETIGFadXLo1bUY6XxEXF_Et_", false);
+                        out.print(c.createRecaptchaHtml(null, null));
+                        %>
+                        </center>
+                        <center>
+                        <button type='submit' class='btn btn-primary'>Ingresar</button>
+                        </center>
+                  </form>
                         </div>
-                    </div>
-                    <div class="col-md-12">
-                       <div style="font-size: large">
-                           <strong><% out.print(producto.getPrecio()); %></strong>
-                       </div>
-                    </div>
-                    <div class="col-md-12">
-                        <% out.print(producto.getDescripcion()); %>
-                    </div>
-                    <div class="col-md-12">
-                        <hr size="4px" color="black" />
-                        <a href="pagar.jsp?id=<%out.print(request.getParameter("id"));%>"><button type="submit" class="btn btn-primary">Pagar</button></a>
-                    </div>
+                        <div class="col-md-4"></div>
                 </div>
             </div>
         </div>
