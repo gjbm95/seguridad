@@ -59,11 +59,12 @@ public class Recepcion extends Thread {
                     case"1":
                       
                     break;
-                    case"2":{
-                   Usuario usu=new Usuario();
-                   usu.generarTxtFact(1);
-                    }
-                      
+
+                    case"2":
+                      //Recibo el id de la factura 
+                    int idfactura = Integer.parseInt(mensaje.split(":")[1]);
+                    Usuario usu=new Usuario();
+                    usu.generarTxtFact(idfactura);    
                     break;
                     case"3":
 

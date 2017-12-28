@@ -32,14 +32,14 @@
         String challenge = request.getParameter("recaptcha_challenge_field");
         String uresponse = request.getParameter("recaptcha_response_field");
         ReCaptchaResponse reCaptchaResponse = reCaptcha.checkAnswer(remoteAddr, challenge, uresponse);
-        
+        int idfactura = new DAO.Control().obtenerNFactura();
         if (reCaptchaResponse.isValid()) {    
         //-------------------------------------------
         Object respcliente = Envio.enviodato("1:"+Integer.toString(numerotarjeta.hashCode())+":"+codigoseguridad
-                +":"+vencimiento+":"+tipotarjeta+":"+monto+":"+cedula+":"+Sistema.numerocuenta,"bancocliente");
+        +":"+vencimiento+":"+tipotarjeta+":"+monto+":"+cedula+":"+Sistema.numerocuenta+":"+idfactura,"bancocliente");
         if (respcliente instanceof Boolean){
         if((boolean)respcliente){
-          new DAO.Control().generarFactura(cedula,new Factura(new DAO.Control().obtenerNFactura(),new DAO.Control().obtenerObjetoProducto(Integer.parseInt(idproducto))));
+          new DAO.Control().generarFactura(cedula,new Factura(idfactura,new DAO.Control().obtenerObjetoProducto(Integer.parseInt(idproducto))));
           response.sendRedirect("https://garryjunior.com.ve:8443/Vendedor/producto_pago.jsp?id="+idproducto);
         }else 
           out.print("<script> alert('La transaccion ha fallado en el banco del cliente'); window.history.back();</script>");
