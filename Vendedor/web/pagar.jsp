@@ -121,7 +121,7 @@
                     <IMG WIDTH=220 HEIGHT=220 SRC="<% out.print(producto.getImagen()); %>">
                 </div>
                 <div class="col-md-6">
-                    <form action="procesamiento/pagar.jsp" method="post"  onsubmit="">
+                    <form action="procesamiento/pagar.jsp" method="post">
                     <div class="col-md-12">
                         <div style="font-size: x-large">
                         <strong><% out.print(producto.getNombre()); %></strong>

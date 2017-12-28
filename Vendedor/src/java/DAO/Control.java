@@ -426,6 +426,7 @@ public class Control {
             Iterator k = facturas.iterator();
             while(k.hasNext())
             {
+              Element f = (Element) k.next();
               conteo++;
             }
         }
