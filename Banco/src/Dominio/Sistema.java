@@ -32,11 +32,11 @@ public class Sistema {
    //Carga Inicial
     public static void cargaInicialBancoCliente(){
       new DaoCliente().crearXML();
-      new DaoCliente().agregarCuenta(new Cuenta("Garry","Bruno","24939724","463728495837206462743","Corriente",500000,new Tarjeta("98723643327893","Visa","4563",1234,0)));
-      new DaoCliente().agregarCuenta(new Cuenta("Aquiles","Pulido","24782343","283649687512457857320","Ahorro",500000,new Tarjeta("12922892832908","Master Card","8675",5678,0)));
+      new DaoCliente().agregarCuenta(new Cuenta("Garry","Bruno","24939724","463728495837206462743","Corriente",500000,new Tarjeta("98723643327893","Visa","4563",1234,0,"02/21")));
+      new DaoCliente().agregarCuenta(new Cuenta("Aquiles","Pulido","24782343","283649687512457857320","Ahorro",500000,new Tarjeta("12922892832908","Master Card","8675",5678,0,"05/22")));
     } 
     public static void cargaInicialBancoVendedor(){
       new DaoVendedor().crearXML();
-      new DaoVendedor().agregarCuenta(new Cuenta("Wilmer","Pereira","16754232","463234823423323423333","Corriente",500000,new Tarjeta("987334544434433","Visa","7644",2356,0)));
+      new DaoVendedor().agregarCuenta(new Cuenta("Wilmer","Pereira","16754232","463234823423323423333","Corriente",500000,new Tarjeta("987334544434433","Visa","7644",2356,0,"07/23")));
     } 
 }

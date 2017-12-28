@@ -17,18 +17,20 @@ public class Tarjeta {
     private String codseguridad; 
     private float saldo; 
     private int clave; 
+    private String fechavenc;
     
     public Tarjeta (){
     
     
     }
 
-    public Tarjeta(String numero, String marca, String codseguridad,int clave,float saldo) {
+    public Tarjeta(String numero, String marca, String codseguridad,int clave,float saldo,String fechavenc) {
         this.numero = numero;
         this.marca = marca;
         this.codseguridad = codseguridad;
         this.clave = clave;
         this.saldo = saldo;
+        this.fechavenc=fechavenc;
     }
 
     
@@ -71,6 +73,14 @@ public class Tarjeta {
 
     public void setSaldo(float saldo) {
         this.saldo = saldo;
+    }
+
+    public String getFechavenc() {
+        return fechavenc;
+    }
+
+    public void setFechavenc(String fechavenc) {
+        this.fechavenc = fechavenc;
     }
     
     

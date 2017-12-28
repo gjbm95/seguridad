@@ -70,6 +70,7 @@ public class DaoCliente {
             tarjeta.setAttribute("codigo",cuenta.getTarjeta().getCodseguridad());
             tarjeta.setAttribute("clave",Integer.toString(cuenta.getTarjeta().getClave()));
             tarjeta.setAttribute("saldo",Float.toString(cuenta.getTarjeta().getSaldo()));
+            tarjeta.setAttribute("fecha_vencimiento",cuenta.getTarjeta().getFechavenc());
             elemento.addContent(tarjeta);
             root.addContent(elemento);
             document.removeContent();
@@ -165,7 +166,7 @@ public class DaoCliente {
                                  ,aux.getAttributeValue("tipo"),
                                  Float.parseFloat(aux.getAttributeValue("saldo")));
                         Element tar = aux.getChild("tarjeta");
-                        resultado.setTarjeta(new Tarjeta(tar.getAttributeValue("numero"),tar.getAttributeValue("marca"),tar.getAttributeValue("codigo"),Integer.parseInt(tar.getAttributeValue("clave")),Float.parseFloat(tar.getAttributeValue("saldo"))));
+                        resultado.setTarjeta(new Tarjeta(tar.getAttributeValue("numero"),tar.getAttributeValue("marca"),tar.getAttributeValue("codigo"),Integer.parseInt(tar.getAttributeValue("clave")),Float.parseFloat(tar.getAttributeValue("saldo")),tar.getAttributeValue("fecha_vencimiento")));
                     }
                 fis.close();
                 return resultado; 
@@ -208,7 +209,7 @@ public class DaoCliente {
                                  ,aux.getAttributeValue("tipo"),
                                  Float.parseFloat(aux.getAttributeValue("saldo")));
                         Element tar = aux.getChild("tarjeta");
-                        resultado.setTarjeta(new Tarjeta(tar.getAttributeValue("numero"),tar.getAttributeValue("marca"),tar.getAttributeValue("codigo"),Integer.parseInt(tar.getAttributeValue("clave")),Float.parseFloat(tar.getAttributeValue("saldo"))));
+                        resultado.setTarjeta(new Tarjeta(tar.getAttributeValue("numero"),tar.getAttributeValue("marca"),tar.getAttributeValue("codigo"),Integer.parseInt(tar.getAttributeValue("clave")),Float.parseFloat(tar.getAttributeValue("saldo")),tar.getAttributeValue("fecha_vencimiento")));
                     }
                 fis.close();
                 return resultado; 
