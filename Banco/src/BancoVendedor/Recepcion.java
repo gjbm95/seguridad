@@ -62,7 +62,12 @@ public class Recepcion extends Thread {
 
                     break;
                     case"3":
-
+                     if (ControladorV.depositarCuenta(mensaje.split(":")[1],Float.parseFloat(mensaje.split(":")[2])))
+                      {  
+                         Envio.enviodato("2:Transaccion Exitosa","vendedor");
+                         respuesta = true;
+                      }else 
+                         respuesta = false;
                     break;
                }
     

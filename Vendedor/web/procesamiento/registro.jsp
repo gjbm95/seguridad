@@ -11,9 +11,6 @@
 <%@ page import="net.tanesha.recaptcha.ReCaptchaResponse" %>
 <!DOCTYPE html>
 <% 
-    /*Productos prod=new Productos();
-    prod.EliminarProductos(1);*/
-    
     String nombre= (String) request.getParameter("name");
     String apellido= (String) request.getParameter("lastname");
     String cedula = (String) request.getParameter("cedula");

@@ -88,7 +88,7 @@ public class DaoVendedor {
     /*
       Elimina una cuenta de un cliente 
     */
-    public void eliminarCuenta(int numero){
+    public void eliminarCuenta(String numero){
        
         File xmlFile = new File(filelocation);
         Document document = null;
@@ -182,7 +182,7 @@ public class DaoVendedor {
     /*
      Devuelve una cuenta en base a la Tarjeta de un cliente
     */
-    public Cuenta obtenerCuenta(int id){
+    public Cuenta obtenerCuenta(String id){
        File xmlFile = new File(filelocation);
         Document document = null;
         if(xmlFile.exists()) {
@@ -249,8 +249,7 @@ public class DaoVendedor {
             Element e = (Element) i.next();
             Element tarjeta = e.getChild("tarjeta");
             if ((id==Integer.parseInt(tarjeta.getAttributeValue("numero")))
-                    &&(codigo==tarjeta.getAttributeValue("codigo"))
-                    &&(clave==Integer.parseInt(tarjeta.getAttributeValue("clave")))) {
+                    &&(codigo.equals(tarjeta.getAttributeValue("codigo")))) {
                 return e;
             }
         }
@@ -260,13 +259,13 @@ public class DaoVendedor {
         /*
      Retorna la cuenta de un usuario 
     */
-    public Element obtenerCuenta(List raiz,int id){
+    public Element obtenerCuenta(List raiz,String id){
         
          Iterator i = raiz.iterator();
           while (i.hasNext()) {
             //System.out.println("i tiene algo");
             Element e = (Element) i.next();
-            if (id==Integer.parseInt(e.getAttributeValue("numero"))) {
+            if (id.equals(e.getAttributeValue("numero"))) {
                 return e;
             }
         }

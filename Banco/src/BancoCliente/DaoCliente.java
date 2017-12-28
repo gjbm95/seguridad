@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
+import org.jdom.Namespace;
 import org.jdom.input.SAXBuilder;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
@@ -89,7 +90,7 @@ public class DaoCliente {
     /*
       Elimina una cuenta de un cliente 
     */
-    public void eliminarCuenta(int numero){
+    public void eliminarCuenta(String numero){
        
         File xmlFile = new File(filelocation);
         Document document = null;
@@ -140,7 +141,7 @@ public class DaoCliente {
     /*
      Devuelve una cuenta en base a la Tarjeta de un cliente
     */
-    public Cuenta obtenerCuenta(int id,String codigo,int clave){
+    public Cuenta obtenerCuenta(int id,String codigo,String vence){
        File xmlFile = new File(filelocation);
         Document document = null;
         if(xmlFile.exists()) {
@@ -157,7 +158,7 @@ public class DaoCliente {
                 Cuenta resultado = null;
                     Element aux = new Element("cuenta");
                     List nodos = root.getChildren("cuenta");
-                    aux = obtenerTarjeta(nodos,id,codigo,clave);
+                    aux = obtenerTarjeta(nodos,id,codigo);
                     if(aux != null) {
                         resultado =  new Cuenta(aux.getAttributeValue("nombre")
                                  ,aux.getAttributeValue("apellido")
@@ -183,7 +184,7 @@ public class DaoCliente {
     /*
      Devuelve una cuenta en base a la Tarjeta de un cliente
     */
-    public Cuenta obtenerCuenta(int id){
+    public Cuenta obtenerCuenta(String id){
        File xmlFile = new File(filelocation);
         Document document = null;
         if(xmlFile.exists()) {
@@ -242,16 +243,13 @@ public class DaoCliente {
     /*
      Retorna la cuenta de un usuario 
     */
-    public Element obtenerTarjeta(List raiz,int id,String codigo, int clave){
+    public Element obtenerTarjeta(List raiz,int id,String codigo){
         
          Iterator i = raiz.iterator();
           while (i.hasNext()) {
-            //System.out.println("i tiene algo");
             Element e = (Element) i.next();
-            Element tarjeta = e.getChild("tarjeta");
-            if ((id==Integer.parseInt(tarjeta.getAttributeValue("numero")))
-                    &&(codigo==tarjeta.getAttributeValue("codigo"))
-                    &&(clave==Integer.parseInt(tarjeta.getAttributeValue("clave")))) {
+            Element tarjeta = e.getChild("tarjeta"); 
+            if ((id==Integer.parseInt(tarjeta.getAttributeValue("numero")))&&(codigo.equals(tarjeta.getAttributeValue("codigo")))) {
                 return e;
             }
         }
@@ -261,13 +259,13 @@ public class DaoCliente {
         /*
      Retorna la cuenta de un usuario 
     */
-    public Element obtenerCuenta(List raiz,int id){
+    public Element obtenerCuenta(List raiz,String id){
         
          Iterator i = raiz.iterator();
           while (i.hasNext()) {
             //System.out.println("i tiene algo");
             Element e = (Element) i.next();
-            if (id==Integer.parseInt(e.getAttributeValue("numero"))) {
+            if (id.equals(e.getAttributeValue("numero"))) {
                 return e;
             }
         }

@@ -15,11 +15,11 @@ import Dominio.Cuenta;
 public class ControladorC {
     
     
-      public static boolean debitarTarjeta(String numero, String codigo,int clave,float cantidad){
-          Cuenta cuenta = new DaoCliente().obtenerCuenta(Integer.parseInt(numero),codigo,clave);
+      public static boolean debitarTarjeta(String numero, String codigo,String vence,String tipo,float cantidad,int cedula){
+          Cuenta cuenta = new DaoCliente().obtenerCuenta(Integer.parseInt(numero),codigo,vence);
           if(cuenta != null){
            cuenta.getTarjeta().setSaldo(cuenta.getTarjeta().getSaldo()+cantidad);
-           new DaoCliente().eliminarCuenta(Integer.parseInt(cuenta.getNumerocuenta()));
+           new DaoCliente().eliminarCuenta(cuenta.getNumerocuenta());
            new DaoCliente().agregarCuenta(cuenta);
            System.out.println("Transaccion Exitosa!");
            return true;
@@ -30,10 +30,10 @@ public class ControladorC {
       }
       
       public static boolean depositarCuenta(String numero,float cantidad){
-          Cuenta cuenta = new DaoCliente().obtenerCuenta(Integer.parseInt(numero));
+          Cuenta cuenta = new DaoCliente().obtenerCuenta(numero);
           if(cuenta != null){
            cuenta.setSaldo(cuenta.getSaldo()+cantidad);
-           new DaoVendedor().eliminarCuenta(Integer.parseInt(cuenta.getNumerocuenta()));
+           new DaoVendedor().eliminarCuenta(cuenta.getNumerocuenta());
            new DaoVendedor().agregarCuenta(cuenta);
            System.out.println("La transferencia ha sido Exitosa!");
            return true;

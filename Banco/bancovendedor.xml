@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <banco>
-  <cuenta nombre="Wilmer" apellido="Pereira" cedula="16754232" numero="463234823423323423333" tipo="Corriente" saldo="500000.0">
-    <tarjeta numero="987334544434433" marca="Visa" codigo="7644" clave="2356" saldo="0.0" />
+  <cuenta nombre="Wilmer" apellido="Pereira" cedula="16754232" numero="463234823423323423333" tipo="Corriente" saldo="500405.0">
+    <tarjeta numero="1605562168" marca="Visa" codigo="7644" clave="2356" saldo="0.0" fecha_vencimiento="07/23" />
   </cuenta>
 </banco>
 

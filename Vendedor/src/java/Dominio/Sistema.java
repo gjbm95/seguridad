@@ -10,13 +10,14 @@ package Dominio;
  * @author Junior
  */
 public class Sistema {
-    //Datos de Conexion 
+   //Datos de Conexion 
      public static String ipbancov = "localhost"; 
      public static String ipbancoc = "localhost";
      public static String ipvendedor = "localhost";
      public static int    puertov = 8888; 
      public static int    puertoc = 9999;
      public static int    puertovendedor = 7777;
+     public static String recepcion=""; 
    //Datos de Seguridad
      public static String llaveServerBancoVendedor = "seguridad/BancoVendedor/serverBancoVendedor_ks"; 
      public static String llaveServerBancoCliente = "seguridad/BancoCliente/serverBancoCliente_ks"; 
@@ -30,5 +31,10 @@ public class Sistema {
      
      public static String rutaProductos="";
      public static String rutaUsuarios="";
+     
+   //Datos Bancarios del Vendedor
+     public static String numerocuenta="463234823423323423333"; 
+   
+     
      
 }

@@ -4,6 +4,7 @@
     Author     : Junior
 --%>
 
+<%@page import="Dominio.Sistema"%>
 <%@page import="Dominio.Producto"%>
 <%@page import="DAO.Control"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -33,6 +34,12 @@
         </style>
     </head>
     <body>
+                    <%
+                   Sistema.llaveClientVendedor = getServletConfig().getServletContext().getRealPath("seguridad/Vendedor/clientVendedor_ks");
+                   Sistema.llaveServerVendedor = getServletConfig().getServletContext().getRealPath("seguridad/Vendedor/serverVendedor_ks");
+                   Sistema.rutaProductos = getServletConfig().getServletContext().getRealPath("basedatos/productos.xml");
+                   Sistema.rutaUsuarios = getServletConfig().getServletContext().getRealPath("basedatos/usuarios.xml");
+            %>
             <header>
                 <div style=" background-color:#0445B5; overflow-x: hidden;">
                 <div class="container">

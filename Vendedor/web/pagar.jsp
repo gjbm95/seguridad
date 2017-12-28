@@ -139,15 +139,15 @@
                     <div class="form-group">
                       <hr size="4px" color="black" />
                       <label for="num">Numero de Tajeta:</label>
-                      <input  type="password" class="form-control" id="num" required pattern="[0-9]+">
+                      <input  type="password" class="form-control" name="numerotarjeta" id="num" required pattern="[0-9]+">
                     </div>
                     <div class="form-group">
                       <label for="tipo">Código de Seguridad:</label>
-                      <input  type="password" class="form-control" id="tipo" required pattern="[0-9]+">
+                      <input  type="password" class="form-control" name="codigoseguridad"  id="codigo" required pattern="[0-9]+">
                     </div>
                     <div class="form-group">
                       <label for="tarjeta">Tipo de Tarjeta:</label>
-                      <select class="selectpicker">
+                      <select class="selectpicker" name="tipo">
                         <option>Visa</option>
                         <option>MasterCard</option>
                       </select>
@@ -155,7 +155,7 @@
                     </div>
                     <div class="form-group">
                       <label for="tipo">Fecha de Vencimiento:</label>
-                      <input type='date' class="form-control" required>
+                      <input type='date' name="vencimiento" class="form-control" required>
                       <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                       </span>
               
@@ -166,19 +166,19 @@
                     </div>    
                     <div class="form-group">
                       <label for="text">Nombre:</label>
-                      <input type="text" class="form-control" id="name" required pattern="[A-Za-z]+">
+                      <input type="text" class="form-control" name="name" id="name" required pattern="[A-Za-z]+">
                     </div>
                     <div class="form-group">
                       <label for="text">Apellido:</label>
-                      <input type="text" class="form-control" id="lastname" required pattern="[A-Za-z]+">
+                      <input type="text" class="form-control" name="lastname" id="lastname" required pattern="[A-Za-z]+">
                     </div>
                     <div class="form-group">
                       <label for="text">Cedula:</label>
-                      <input type="num" class="form-control" id="cedula" required pattern="[0-9]+">
+                      <input type="num" class="form-control" name="cedula" id="cedula" required pattern="[0-9]+">
                     </div>      
                     <div class="form-group">
                       <label for="email">Correo electrónico:</label>
-                      <input type="email" class="form-control" id="email" required>
+                      <input type="email" class="form-control" name="email" id="email" required>
                     </div> 
                     <%
                         ReCaptcha c = ReCaptchaFactory.newSecureReCaptcha("6LeYWT4UAAAAABnQP_9RWZUJtc_w1axpT7F0wln1", "6LeYWT4UAAAAAEgGETIGFadXLo1bUY6XxEXF_Et_", false);
@@ -187,6 +187,8 @@
                     </div>
                     <div class="col-md-12">
                         <hr size="4px" color="black" />
+                        <input type="hidden" name="monto" value="<% out.print(Float.toString(producto.getPrecio())); %>">
+                        <input type="hidden" name="idproducto" value="<% out.print(producto.getId()); %>">
                         <button type="submit" class="btn btn-primary">Pagar</button>
                     </div>
                     </form>

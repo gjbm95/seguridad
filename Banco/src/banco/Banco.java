@@ -6,6 +6,8 @@
 package banco;
 
 import BancoCliente.Envio;
+import BancoCliente.VistaC;
+import BancoVendedor.VistaV;
 import Dominio.Sistema;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -37,11 +39,13 @@ public class Banco {
             case "1":{
                     Sistema.cargaInicialBancoCliente();
                     new BancoCliente.Control().start();
+                    VistaC.menu();
             break;
             }
             case "2":{
                     Sistema.cargaInicialBancoVendedor();
                     new BancoVendedor.Control().start();
+                    VistaV.menu();
             break;
             }
             case "3": {
