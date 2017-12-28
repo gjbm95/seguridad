@@ -59,7 +59,7 @@ public class Recepcion extends Thread {
                       
                     break;
                     case"2":
-
+                        System.out.println("Una transaccion no se ha efectuado por saldo insuficiente");
                     break;
                     case"3":
                      if (ControladorV.depositarCuenta(mensaje.split(":")[1],Float.parseFloat(mensaje.split(":")[2])))

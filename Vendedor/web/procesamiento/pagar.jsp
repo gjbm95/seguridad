@@ -36,10 +36,16 @@
         //-------------------------------------------
         Object respcliente = Envio.enviodato("1:"+Integer.toString(numerotarjeta.hashCode())+":"+codigoseguridad
                 +":"+vencimiento+":"+tipotarjeta+":"+monto+":"+cedula+":"+Sistema.numerocuenta,"bancocliente");
+        if (respcliente instanceof Boolean){
         if((boolean)respcliente){
           response.sendRedirect("https://garryjunior.com.ve:8443/Vendedor/producto_pago.jsp?id="+idproducto);
         }else 
           out.print("<script> alert('La transaccion ha fallado en el banco del cliente'); window.history.back();</script>");
+        }else 
+        {
+          if (((String)respcliente).equals("Saldo insuficiente"))
+          out.print("<script> alert('Su banco ha rechazado la solicitud por saldo insuficiente'); window.history.back();</script>");
+        }
         //-------------------------------------------
         //out.print("<script> alert('Registro Exitoso'); </script>");
         } else {

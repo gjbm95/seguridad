@@ -15,17 +15,20 @@ import Dominio.Cuenta;
 public class ControladorC {
     
     
-      public static boolean debitarTarjeta(String numero, String codigo,String vence,String tipo,float cantidad,int cedula){
+      public static String debitarTarjeta(String numero, String codigo,String vence,String tipo,float cantidad,int cedula){
           Cuenta cuenta = new DaoCliente().obtenerCuenta(Integer.parseInt(numero),codigo,vence);
           if(cuenta != null){
-           cuenta.getTarjeta().setSaldo(cuenta.getTarjeta().getSaldo()+cantidad);
-           new DaoCliente().eliminarCuenta(cuenta.getNumerocuenta());
-           new DaoCliente().agregarCuenta(cuenta);
-           System.out.println("Transaccion Exitosa!");
-           return true;
+            if (cuenta.getSaldo()>cantidad){   
+               cuenta.getTarjeta().setSaldo(cuenta.getTarjeta().getSaldo()+cantidad);
+               new DaoCliente().eliminarCuenta(cuenta.getNumerocuenta());
+               new DaoCliente().agregarCuenta(cuenta);
+               System.out.println("Transaccion Exitosa!");
+               return "Exitoso";
+            }else
+               return "Saldo insuficiente";
           }else{ 
            System.out.println("Transaccion Fallida!. Hay un dato erroneo!");
-           return false; 
+           return "Fallido"; 
           }
       }
       

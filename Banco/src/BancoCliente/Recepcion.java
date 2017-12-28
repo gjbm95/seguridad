@@ -48,14 +48,21 @@ public class Recepcion extends Thread {
 
                     break;
                     case"1":
-                     if(ControladorC.debitarTarjeta(mensaje.split(":")[1],mensaje.split(":")[2],
+                     String resultado = ControladorC.debitarTarjeta(mensaje.split(":")[1],mensaje.split(":")[2],
                      mensaje.split(":")[3],mensaje.split(":")[4],Float.parseFloat(mensaje.split(":")[5])
-                             ,Integer.parseInt(mensaje.split(":")[6]))){
+                             ,Integer.parseInt(mensaje.split(":")[6]));
+                     if(resultado.equals("Exitoso")){
                       if((boolean)(Envio.enviodato("3:"+mensaje.split(":")[7]+":"+mensaje.split(":")[5],"bancovendedor"))){
                       System.out.println("Se ha debitado la cantidad en la cuenta del vendedor exitosamente");
                       respuesta = true;
                       }else 
                       respuesta = false;
+                     }else if (resultado.equals("Fallido")){
+                      respuesta = false; 
+                     }else if (resultado.equals("Saldo insuficiente"))
+                     {
+                      respuesta = "Saldo insuficiente";
+                      Envio.enviodato("2:","bancovendedor");
                      }
                      
                     break;

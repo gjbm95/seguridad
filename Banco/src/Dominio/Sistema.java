@@ -18,7 +18,7 @@ public class Sistema {
      public static String ipbancoc = "localhost";
      public static String ipvendedor = "localhost";
      public static int    puertov = 8888; 
-     public static int    puertoc = 9999;
+     public static int    puertoc = 1111;
      public static int    puertovendedor = 7777;
    //Datos de Seguridad
      public static String llaveServerBancoVendedor = "seguridad/BancoVendedor/serverBancoVendedor_ks"; 
