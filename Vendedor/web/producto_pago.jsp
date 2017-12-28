@@ -68,9 +68,9 @@
                         "        <center><label>Iniciar Sesión</label></center>"+
                         "    </div>"+
                         "<label >Nombre de usuario:</label>"+
-                        "<input type='user' class='form-control' id='usuario' placeholder='Cedula' name='usuario'>"+
+                        "<input type='user' class='form-control' id='usuario' placeholder='Cedula' name='usuario' required>"+
                         "<label for='contrasena'>Contraseña:</label>"+
-                        "<input type='password' class='form-control' id='exampleInputPassword1' placeholder='Contraseña' name='pwd'>"+
+                        "<input type='password' class='form-control' id='exampleInputPassword1' placeholder='Contraseña' name='pwd' required>"+
                         "<br>"+
                         "<center>"+
                         "<button type='submit' class='btn btn-primary'>Ingresar</button>"+

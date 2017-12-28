@@ -12,10 +12,9 @@
 <%@page import="Dominio.Sistema"%>
 <%@page import="java.io.File"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page import="Red.*" %>
 <%
             if (Sistema.suiche){ 
-            new Control().start();
+            new Red.Control().start();
             Sistema.suiche = false;
             }
             String usuario = (String) request.getParameter("usuario");
@@ -33,7 +32,8 @@
             ReCaptchaResponse reCaptchaResponse = reCaptcha.checkAnswer(remoteAddr, challenge, uresponse);
             
             if((usu.IniciarSesion(usuario,pass))&&(reCaptchaResponse.isValid())){
-            session.setAttribute("usuario",usuario);
+          
+            session.setAttribute("usuario",new DAO.Control().obtenerObjetoCliente(usuario).getNombre() + " " + new DAO.Control().obtenerObjetoCliente(usuario).getApellido());
             response.sendRedirect("https://garryjunior.com.ve:8443/Vendedor/");
             }else{
             out.print("<script> alert('Usuario o Contrasena Incorrecto');"

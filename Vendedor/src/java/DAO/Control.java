@@ -287,6 +287,14 @@ public class Control {
                 } 
       return null; 
     }
+    
+    public Cliente obtenerObjetoCliente(String id){
+                for (Cliente cliente : this.obtenerListaClientes()){
+                   if (cliente.getCedula().equals(id))
+                       return cliente;
+                } 
+      return null; 
+    }
    
     /*
      Retorna el cliente por su cedula
@@ -330,22 +338,7 @@ public class Control {
             }
          } 
         
-            List recursos = root.getChildren("producto");
-           
-            /*document.removeContent();
-            document.addContent(root);
-            
-                try {
-                    FileWriter writer = new FileWriter(xmlFile);
-                    XMLOutputter outputter = new XMLOutputter();
-                    outputter.setFormat(Format.getPrettyFormat());
-                    outputter.output(document, writer);
-                    //outputter.output(document, System.out);
-                    writer.close(); // close writer
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }*/
-        
+        List recursos = root.getChildren("producto");
          Iterator i = recursos.iterator();
           while (i.hasNext()) {
             Element e = (Element) i.next();
@@ -358,6 +351,46 @@ public class Control {
             producto.add( pro );
         }
             return producto;
+        }
+        
+        
+     public ArrayList<Cliente> obtenerListaClientes(){
+        
+        ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+            
+        File xmlFile = new File(filelocation_cliente);
+        Document document = null;
+        if(xmlFile.exists()) {
+            try {
+                // try to load document from xml file if it exist
+                // create a file input stream
+                FileInputStream fis = new FileInputStream(xmlFile);
+                // create a sax builder to parse the document
+                SAXBuilder sb = new SAXBuilder();
+                // parse the xml content provided by the file input stream and create a Document object
+                document = sb.build(fis);
+                // get the root element of the document
+                root = document.getRootElement();
+                fis.close();
+            } catch (JDOMException ex) {
+                Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
+            }
+         } 
+        
+        List recursos = root.getChildren("cliente");
+         Iterator i = recursos.iterator();
+          while (i.hasNext()) {
+            Element e = (Element) i.next();
+            Cliente pro = new Cliente();
+            pro.setCedula(e.getAttributeValue("cedula"));
+            pro.setNombre(e.getAttributeValue("nombre"));
+            pro.setApellido(e.getAttributeValue("apellido"));
+            pro.setCorreo(e.getAttributeValue("correo"));
+            clientes.add( pro );
+        }
+            return clientes;
         }
         
         

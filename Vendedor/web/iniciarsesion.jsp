@@ -77,9 +77,9 @@
                         "        <center><label>Iniciar Sesión</label></center>"+
                         "    </div>"+
                         "<label >Nombre de usuario:</label>"+
-                        "<input type='user' class='form-control' id='usuario' placeholder='Cedula' name='usuario'>"+
+                        "<input type='user' class='form-control' id='usuario' placeholder='Cedula' name='usuario' required>"+
                         "<label for='contrasena'>Contraseña:</label>"+
-                        "<input type='password' class='form-control' id='exampleInputPassword1' placeholder='Contraseña' name='pwd'>"+
+                        "<input type='password' class='form-control' id='exampleInputPassword1' placeholder='Contraseña' name='pwd' required>"+
                         "<br>"+
                         "<center>"+
                         "<button type='submit' class='btn btn-primary'>Ingresar</button>"+
@@ -89,6 +89,7 @@
                         }else{
                          out.print("<div>"
                                  + "<div><center><IMG SRC='recursos/usuario.png' WIDTH=100 HEIGHT=100></center></div>"
+                                 + "<div><center>"+request.getSession().getAttribute("usuario")+"</center></div>"
                                  + "<br>"
                                  + "<div><center><a href='procesamiento/cerrarsesion.jsp'><button class='btn btn-primary'>Cerrar Sesion</button></a></center></div>"
                                 );
@@ -117,7 +118,7 @@
                                 <center><label>Iniciar Sesión</label></center>
                             </div>
                         <label >Nombre de usuario:</label>
-                        <input type='user' class='form-control' id='usuario' placeholder='Cedula' name='usuario' value="<% out.print(request.getParameter("usuario")); %>">
+                        <input type='user' class='form-control' id='usuario' placeholder='Cedula' name='usuario' value="<% out.print(request.getParameter("usuario")); %>" required>
                         <label for='contrasena'>Contraseña:</label>
                         <input type='password' class='form-control' id='exampleInputPassword1' placeholder='Contraseña' name='pwd' value="<% out.print(Integer.toString(request.getParameter("pwd").hashCode())); %>" disabled>
                          <input type="hidden" name="contra" value="<% out.print(Integer.toString(request.getParameter("pwd").hashCode())); %>">
