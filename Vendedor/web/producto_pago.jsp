@@ -103,8 +103,10 @@
             <div style="width:100%; color: #0445B5;">
             <center>
             <h1 style="font-family:verdana; font-size:300%;">Comprado Exitosamente</h1>
+            <img src="recursos/check-icon.png" WIDTH=150 HEIGHT=140 >
             </center>
             </div>
+          
             <div style="font-size:300%;"  class="bottom"></div>
             <div style="width:100%;">
                 <br>
