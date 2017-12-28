@@ -30,7 +30,7 @@ public class VistaC {
                cont.ConocerSaldo();
             break;
             }
-            case "3": {
+            case "2": {
             // SALIR
               estado =0;
               System.exit(0);
