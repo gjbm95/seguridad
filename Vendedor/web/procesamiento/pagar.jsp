@@ -4,6 +4,7 @@
     Author     : Junior
 --%>
 
+<%@page import="Dominio.Factura"%>
 <%@page import="Dominio.Sistema"%>
 <%@page import="Red.Envio"%>
 <%@page import="net.tanesha.recaptcha.ReCaptchaResponse"%>
@@ -38,6 +39,7 @@
                 +":"+vencimiento+":"+tipotarjeta+":"+monto+":"+cedula+":"+Sistema.numerocuenta,"bancocliente");
         if (respcliente instanceof Boolean){
         if((boolean)respcliente){
+          new DAO.Control().generarFactura(cedula,new Factura(new DAO.Control().obtenerNFactura(),new DAO.Control().obtenerObjetoProducto(Integer.parseInt(idproducto))));
           response.sendRedirect("https://garryjunior.com.ve:8443/Vendedor/producto_pago.jsp?id="+idproducto);
         }else 
           out.print("<script> alert('La transaccion ha fallado en el banco del cliente'); window.history.back();</script>");

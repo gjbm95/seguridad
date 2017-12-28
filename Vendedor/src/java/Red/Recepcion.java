@@ -59,7 +59,7 @@ public class Recepcion extends Thread {
                       
                     break;
                     case"2":
-
+                      
                     break;
                     case"3":
 

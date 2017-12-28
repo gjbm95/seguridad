@@ -4,7 +4,7 @@
     <tarjeta numero="-1708904157" marca="Master Card" codigo="8675" clave="5678" saldo="0.0" fecha_vencimiento="05/22" />
   </cuenta>
   <cuenta nombre="Garry" apellido="Bruno" cedula="24939724" numero="463728495837206462743" tipo="Corriente" saldo="500000.0">
-    <tarjeta numero="560871670" marca="Visa" codigo="4563" clave="1234" saldo="405.0" fecha_vencimiento="02/21" />
+    <tarjeta numero="560871670" marca="Visa" codigo="4563" clave="1234" saldo="1400.0" fecha_vencimiento="02/21" />
   </cuenta>
 </banco>
 
