@@ -31,7 +31,8 @@ public class Banco {
             System.out.println("------------------------------------------------");
             System.out.println("1 - Banco Cliente");
             System.out.println("2 - Banco Vendedor");
-            System.out.println("3 - Salir");
+            System.out.println("3 - Cliente");
+            System.out.println("4 - Salir");
             System.out.println("------------------------------------------------");
             System.out.println("Ingresa tu opcion: ");
             String i = sc.nextLine();
@@ -39,6 +40,7 @@ public class Banco {
             case "1":{
                     Sistema.cargaInicialBancoCliente();
                     new BancoCliente.Control().start();
+                    //Envio.enviodato("Probando","cliente");
                     VistaC.menu();
             break;
             }
@@ -48,7 +50,12 @@ public class Banco {
                     VistaV.menu();
             break;
             }
-            case "3": {
+            case "3":{
+                    new Cliente.Control().start();
+                    
+            break;
+            }
+            case "4": {
             // SALIR
               estado =0;
               System.exit(0);

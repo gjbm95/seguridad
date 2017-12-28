@@ -51,6 +51,11 @@ public class Envio {
             System.setProperty("javax.net.ssl.trustStore", CLIENT_KEY_STORE);
             reves = clientWithCert(Sistema.ipvendedor,Sistema.puertovendedor);
             }
+            if(tipo.equals("cliente")){
+            CLIENT_KEY_STORE = Sistema.llaveClientCliente;
+            System.setProperty("javax.net.ssl.trustStore", CLIENT_KEY_STORE);
+            reves = clientWithCert(Sistema.ipcliente,Sistema.puertocliente);
+            }
             ObjectOutputStream salidaObjeto;      
             //Se colocan los datos del nodo (Direccion IP y Puerto).
             salidaObjeto = new ObjectOutputStream(reves.getOutputStream());

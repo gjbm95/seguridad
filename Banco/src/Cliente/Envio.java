@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package BancoVendedor;
+package Cliente;
 
+import BancoVendedor.*;
 import Dominio.Sistema;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
