@@ -312,6 +312,8 @@ public class Control {
       return null; 
     }
         
+       
+        
         
         public ArrayList<Producto> obtenerListaProductos(){
         
@@ -393,6 +395,7 @@ public class Control {
             return clientes;
         }
         
+     
         public int obtenerNFactura(){
         File xmlFile = new File(filelocation_cliente);
         Document document = null;
@@ -480,6 +483,9 @@ public class Control {
       return false; 
     }
     
+     
+        
+        
     /*
      Retorna el cliente por su cedula
     */
@@ -631,9 +637,75 @@ public class Control {
                     updateDocumentCliente();
                 }
             
-        
-      
     }
+    
+    //obtiene el cliente por medio de una factura
+    public Cliente obtenerCliente(int idfact){
+       File xmlFile = new File(filelocation_cliente);
+        Document document = null;
+        if(xmlFile.exists()) {
+            try {
+                // try to load document from xml file if it exist
+                // create a file input stream
+                FileInputStream fis = new FileInputStream(xmlFile);
+                // create a sax builder to parse the document
+                SAXBuilder sb = new SAXBuilder();
+                // parse the xml content provided by the file input stream and create a Document object
+                document = sb.build(fis);
+                // get the root element of the document
+                root = document.getRootElement();
+                Cliente resultado = null;
+                List recursos = root.getChildren("cliente");
+                    Iterator i = recursos.iterator();
+                    while (i.hasNext()) {
+                    Element e = (Element) i.next();
+                    List facturas = e.getChildren("factura");
+                    Iterator k = facturas.iterator();
+                    while(k.hasNext())
+                    { Element a = (Element) k.next();
+                        if(idfact==Integer.parseInt(a.getAttributeValue("id"))){
+                        resultado =  new Cliente(e.getAttributeValue("nombre")
+                                 ,e.getAttributeValue("apellido")
+                                 ,e.getAttributeValue("cedula")
+                                 ,e.getAttributeValue("correo")
+                                 ,e.getAttributeValue("contrasena"));
+                        Element fact = e.getChild("factura");
+                        Element pro=fact.getChild("producto");
+                        ArrayList<Factura> factura= new ArrayList<Factura>();
+                        factura.add(new Factura(Integer.parseInt(fact.getAttributeValue("id")),
+                                new Producto(Integer.parseInt(pro.getAttributeValue("id")),pro.getAttributeValue("nombre"),pro.getAttributeValue("descripcion"),Float.parseFloat(pro.getAttributeValue("precio")),pro.getAttributeValue("imagen"))));
+                        
+                        resultado.setFactura(factura);
+                        
+                        }
+                     }
+                    }
+                    
+                fis.close();
+                return resultado; 
+            } catch (JDOMException ex) {
+                Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
+            }
+         } 
+
+        return null; 
+    }
+    
+    /* public Element obtenerFactura(List raiz,int id){
+        
+         Iterator i = raiz.iterator();
+          while (i.hasNext()) {
+            Element e = (Element) i.next();
+              System.out.println("ESTO ES E "+e.getAttributeValue("id"));
+            if (id==Integer.parseInt(e.getAttributeValue("id"))) {
+                System.out.println("ENTRO EN EL IF DE OBTENER");
+                return e;
+            }
+        }
+      return null; 
+    }*/
     
     
 }

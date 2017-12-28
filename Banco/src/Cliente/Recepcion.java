@@ -5,6 +5,8 @@
  */
 package Cliente;
 
+
+import BancoVendedor.ControladorV;
 import BancoVendedor.*;
 import java.io.BufferedReader;
 import java.io.IOException;
