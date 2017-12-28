@@ -1,5 +1,6 @@
 package Cliente;
 
+import BancoVendedor.*;
 import Dominio.Sistema;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -25,7 +26,7 @@ import javax.net.ssl.SSLServerSocketFactory;
  */
 public class Control extends Thread{
     
-    private static String SERVER_KEY_STORE = Sistema.llaveServerBancoVendedor;
+    private static String SERVER_KEY_STORE = Sistema.llaveServerCliente;
     private static String SERVER_KEY_STORE_PASSWORD = "123123";
     
     public Control(){
@@ -47,7 +48,7 @@ public class Control extends Thread{
             context.init(kf.getKeyManagers(), null, null);
 
             ServerSocketFactory factory = context.getServerSocketFactory();
-            ServerSocket _socket = factory.createServerSocket(Sistema.puertov);
+            ServerSocket _socket = factory.createServerSocket(Sistema.puertocliente);
             ((SSLServerSocket) _socket).setNeedClientAuth(false);
             //Contador de procesos; 
              int i=1;

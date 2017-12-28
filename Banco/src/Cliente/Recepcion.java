@@ -5,7 +5,9 @@
  */
 package Cliente;
 
+
 import BancoVendedor.ControladorV;
+import BancoVendedor.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -48,6 +50,7 @@ public class Recepcion extends Thread {
                ObjectOutputStream salidaObjeto = new ObjectOutputStream(recibo.getOutputStream()); 
                //Mensaje que llega:
                 mensaje = (String)ois.readObject();
+                System.out.println(mensaje);
                //Preparo respuesta:
                 Object respuesta = null;
                //RESPUESTAS DEL SERVIDOR:
@@ -63,12 +66,7 @@ public class Recepcion extends Thread {
                         System.out.println("Una transaccion no se ha efectuado por saldo insuficiente");
                     break;
                     case"3":
-                     if (ControladorV.depositarCuenta(mensaje.split(":")[1],Float.parseFloat(mensaje.split(":")[2])))
-                      {  
-                         Envio.enviodato("2:"+mensaje.split(":")[3]+":Transaccion Exitosa","vendedor");
-                         respuesta = true;
-                      }else 
-                         respuesta = false;
+                    
                     break;
                }
     

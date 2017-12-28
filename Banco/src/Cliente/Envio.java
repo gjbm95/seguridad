@@ -5,6 +5,7 @@
  */
 package Cliente;
 
+import BancoVendedor.*;
 import Dominio.Sistema;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

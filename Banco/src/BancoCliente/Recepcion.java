@@ -54,18 +54,19 @@ public class Recepcion extends Thread {
                      mensaje.split(":")[3],mensaje.split(":")[4],Float.parseFloat(mensaje.split(":")[5])
                              ,mensaje.split(":")[6]);
                      if(resultado.equals("Exitoso")){
-                      if((boolean)(Envio.enviodato("3:"+mensaje.split(":")[7]+":"+mensaje.split(":")[5]+":"+mensaje.split(":")[8],"bancovendedor"))){
-                      System.out.println("Se ha debitado la cantidad en la cuenta del vendedor exitosamente");
-                      respuesta = true;
-                      }else 
-                      respuesta = false;
+                          if((boolean)(Envio.enviodato("3:"+mensaje.split(":")[7]+":"+mensaje.split(":")[5]+":"+mensaje.split(":")[8],"bancovendedor"))){
+                          System.out.println("Se ha debitado la cantidad en la cuenta del vendedor exitosamente");
+                          respuesta = true;
+//                          Envio.enviodato("1:","cliente");
+                          }else 
+                          respuesta = false;
                      }else if (resultado.equals("Fallido")){
                       respuesta = false; 
                      }else if (resultado.equals("Saldo insuficiente"))
-                     {
-                      respuesta = "Saldo insuficiente";
-                      Envio.enviodato("2:","bancovendedor");
-                     }
+                         {
+                          respuesta = "Saldo insuficiente";
+                          Envio.enviodato("2:","bancovendedor");
+                         }
                      
                     break;
                     case"2":
