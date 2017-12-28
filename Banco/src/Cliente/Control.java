@@ -1,4 +1,4 @@
-package BancoVendedor;
+package Cliente;
 
 import Dominio.Sistema;
 import java.io.FileInputStream;
