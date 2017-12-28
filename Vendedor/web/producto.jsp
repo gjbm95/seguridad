@@ -93,7 +93,6 @@
                 </div>
             </header>
          <% Control almacen = new Control();
-         System.out.println("ESTA ES LA ID "+request.getParameter("id"));
              Producto producto = almacen.obtenerObjetoProducto(Integer.parseInt(request.getParameter("id")));
           %>
         <div class="container">
