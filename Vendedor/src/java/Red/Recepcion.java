@@ -59,7 +59,9 @@ public class Recepcion extends Thread {
                       
                     break;
                     case"2":
-                      
+                      //Recibo el id de la factura 
+                    int idfactura = Integer.parseInt(mensaje.split(":")[1]);
+                        
                     break;
                     case"3":
 

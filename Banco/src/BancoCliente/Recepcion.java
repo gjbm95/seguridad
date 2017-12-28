@@ -54,7 +54,7 @@ public class Recepcion extends Thread {
                      mensaje.split(":")[3],mensaje.split(":")[4],Float.parseFloat(mensaje.split(":")[5])
                              ,mensaje.split(":")[6]);
                      if(resultado.equals("Exitoso")){
-                      if((boolean)(Envio.enviodato("3:"+mensaje.split(":")[7]+":"+mensaje.split(":")[5],"bancovendedor"))){
+                      if((boolean)(Envio.enviodato("3:"+mensaje.split(":")[7]+":"+mensaje.split(":")[5]+":"+mensaje.split(":")[8],"bancovendedor"))){
                       System.out.println("Se ha debitado la cantidad en la cuenta del vendedor exitosamente");
                       respuesta = true;
                       }else 
