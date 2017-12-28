@@ -36,7 +36,7 @@
         if (reCaptchaResponse.isValid()) {    
         //-------------------------------------------
         Object respcliente = Envio.enviodato("1:"+Integer.toString(numerotarjeta.hashCode())+":"+codigoseguridad
-        +":"+vencimiento+":"+tipotarjeta+":"+monto+":"+cedula+":"+Sistema.numerocuenta+":"+idfactura,"bancocliente");
+        +":"+vencimiento+":"+tipotarjeta+":"+monto+":"+cedula+":"+Sistema.numerocuenta+":"+Integer.toString(idfactura),"bancocliente");
         if (respcliente instanceof Boolean){
         if((boolean)respcliente){
           new DAO.Control().generarFactura(cedula,new Factura(idfactura,new DAO.Control().obtenerObjetoProducto(Integer.parseInt(idproducto))));
