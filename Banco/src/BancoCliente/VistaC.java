@@ -29,7 +29,7 @@ public class VistaC {
                
             break;
             }
-            case "3": {
+            case "2": {
             // SALIR
               estado =0;
               System.exit(0);
