@@ -27,7 +27,6 @@ import javax.net.ssl.SSLSocketFactory;
 public class Envio {
     private static String CLIENT_KEY_STORE = "client_ks";
     private static String CLIENT_KEY_STORE_PASSWORD = "456456";
-    
     public static Object enviodato(Object dato, String tipo){
         try {
             Object respuesta =null;

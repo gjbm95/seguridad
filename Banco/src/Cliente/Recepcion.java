@@ -48,7 +48,6 @@ public class Recepcion extends Thread {
                ObjectOutputStream salidaObjeto = new ObjectOutputStream(recibo.getOutputStream()); 
                //Mensaje que llega:
                 mensaje = (String)ois.readObject();
-                System.out.println(mensaje);
                //Preparo respuesta:
                 Object respuesta = null;
                //RESPUESTAS DEL SERVIDOR:
@@ -58,7 +57,7 @@ public class Recepcion extends Thread {
 
                     break;
                     case"1":
-                      
+                        System.out.println("La compra ha sido exitosa, en breve se emitira su factura!");
                     break;
                     case"2":
                         System.out.println("Una transaccion no se ha efectuado por saldo insuficiente");

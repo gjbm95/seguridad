@@ -40,7 +40,6 @@ public class Banco {
             case "1":{
                     Sistema.cargaInicialBancoCliente();
                     new BancoCliente.Control().start();
-                    //Envio.enviodato("Probando","cliente");
                     VistaC.menu();
             break;
             }
