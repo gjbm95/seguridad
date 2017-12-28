@@ -5,6 +5,8 @@
  */
 package Dominio;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Junior
@@ -15,6 +17,7 @@ public class Cliente {
     private String cedula; 
     private String correo; 
     private String contrasena;
+    private ArrayList<Factura> factura;
 
     public Cliente() {
     }
@@ -26,6 +29,16 @@ public class Cliente {
         this.correo = correo;
         this.contrasena = contrasena;
     }
+
+    public Cliente(String nombre, String apellido, String cedula, String correo, String contrasena, ArrayList<Factura> factura) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.cedula = cedula;
+        this.correo = correo;
+        this.contrasena = contrasena;
+        this.factura = factura;
+    }
+    
     
     
      
@@ -70,6 +83,17 @@ public class Cliente {
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
+
+    public ArrayList<Factura> getFactura() {
+        return factura;
+    }
+
+    public void setFactura(ArrayList<Factura> factura) {
+        this.factura = factura;
+    }
+    
+    
+    
     
     
      

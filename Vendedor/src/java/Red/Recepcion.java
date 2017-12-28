@@ -5,6 +5,7 @@
  */
 package Red;
 
+import Controladores.Usuario;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -58,7 +59,10 @@ public class Recepcion extends Thread {
                     case"1":
                       
                     break;
-                    case"2":
+                    case"2":{
+                   Usuario usu=new Usuario();
+                   usu.generarTxtFact(1);
+                    }
                       
                     break;
                     case"3":

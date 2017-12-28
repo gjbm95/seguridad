@@ -4,10 +4,12 @@
     Author     : Junior
 --%>
 
+<%@page import="Controladores.Usuario"%>
 <%@page import="Dominio.Producto"%>
 <%@page import="DAO.Control"%>
 <%@page import="Dominio.Sistema"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -39,6 +41,8 @@
                    Sistema.llaveServerVendedor = getServletConfig().getServletContext().getRealPath("seguridad/Vendedor/serverVendedor_ks");
                    Sistema.rutaProductos = getServletConfig().getServletContext().getRealPath("basedatos/productos.xml");
                    Sistema.rutaUsuarios = getServletConfig().getServletContext().getRealPath("basedatos/usuarios.xml");
+                   Sistema.rutaFactura = getServletConfig().getServletContext().getRealPath("basedatos/factura.txt");
+                     
             %>
             <header>
                 <div style=" background-color:#0445B5; overflow-x: hidden;">
