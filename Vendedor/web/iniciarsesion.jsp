@@ -119,7 +119,8 @@
                         <label >Nombre de usuario:</label>
                         <input type='user' class='form-control' id='usuario' placeholder='Cedula' name='usuario' value="<% out.print(request.getParameter("usuario")); %>">
                         <label for='contrasena'>Contraseña:</label>
-                        <input type='password' class='form-control' id='exampleInputPassword1' placeholder='Contraseña' name='pwd' value="<% out.print(request.getParameter("pwd")); %>">
+                        <input type='password' class='form-control' id='exampleInputPassword1' placeholder='Contraseña' name='pwd' value="<% out.print(Integer.toString(request.getParameter("pwd").hashCode())); %>" disabled>
+                         <input type="hidden" name="contra" value="<% out.print(Integer.toString(request.getParameter("pwd").hashCode())); %>">
                         <br>
                         <center>
                         <%

@@ -19,7 +19,7 @@
             Sistema.suiche = false;
             }
             String usuario = (String) request.getParameter("usuario");
-            String pass = (String) request.getParameter("pwd");
+            String pass = (String) request.getParameter("contra");
             
             //Inicio de Sesion  
             Productos pro=new Productos();
@@ -32,7 +32,7 @@
             String uresponse = request.getParameter("recaptcha_response_field");
             ReCaptchaResponse reCaptchaResponse = reCaptcha.checkAnswer(remoteAddr, challenge, uresponse);
             
-            if((usu.IniciarSesion(usuario, Integer.toString(pass.hashCode())))&&(reCaptchaResponse.isValid())){
+            if((usu.IniciarSesion(usuario,pass))&&(reCaptchaResponse.isValid())){
             session.setAttribute("usuario",usuario);
             response.sendRedirect("https://garryjunior.com.ve:8443/Vendedor/");
             }else{
