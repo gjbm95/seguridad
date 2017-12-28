@@ -41,6 +41,11 @@
                    Sistema.llaveServerVendedor = getServletConfig().getServletContext().getRealPath("seguridad/Vendedor/serverVendedor_ks");
                    Sistema.rutaProductos = getServletConfig().getServletContext().getRealPath("basedatos/productos.xml");
                    Sistema.rutaUsuarios = getServletConfig().getServletContext().getRealPath("basedatos/usuarios.xml");
+                   if (request.getSession().getAttribute("usuario")==null)
+                   {
+                     out.print("<script> alert('Usted debe iniciar Sesion'); </script>");
+                     response.sendRedirect("https://garryjunior.com.ve:8443/Vendedor/");
+                   }
             %>
             <header>
                 <div style=" background-color:#0445B5; overflow-x: hidden;">
@@ -134,11 +139,11 @@
                     <div class="form-group">
                       <hr size="4px" color="black" />
                       <label for="num">Numero de Tajeta:</label>
-                      <input  type="password" class="form-control" id="num">
+                      <input  type="password" class="form-control" id="num" required pattern="[0-9]+">
                     </div>
                     <div class="form-group">
                       <label for="tipo">Código de Seguridad:</label>
-                      <input  type="password" class="form-control" id="tipo">
+                      <input  type="password" class="form-control" id="tipo" required pattern="[0-9]+">
                     </div>
                     <div class="form-group">
                       <label for="tarjeta">Tipo de Tarjeta:</label>
@@ -150,11 +155,10 @@
                     </div>
                     <div class="form-group">
                       <label for="tipo">Fecha de Vencimiento:</label>
-                      <div class='input-group date' id='datetimepicker1'>
-                      <input type='text' class="form-control" />
+                      <input type='date' class="form-control" required>
                       <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                       </span>
-                     </div>
+              
                     </div>
                     <div class="form-group">
                       <label for="text" style="font-size: large">Datos del titular de la Cuenta Bancaria a Debitar:</label>
@@ -162,19 +166,19 @@
                     </div>    
                     <div class="form-group">
                       <label for="text">Nombre:</label>
-                      <input type="text" class="form-control" id="name">
+                      <input type="text" class="form-control" id="name" required pattern="[A-Za-z]+">
                     </div>
                     <div class="form-group">
                       <label for="text">Apellido:</label>
-                      <input type="text" class="form-control" id="lastname">
+                      <input type="text" class="form-control" id="lastname" required pattern="[A-Za-z]+">
                     </div>
                     <div class="form-group">
                       <label for="text">Cedula:</label>
-                      <input type="num" class="form-control" id="cedula">
+                      <input type="num" class="form-control" id="cedula" required pattern="[0-9]+">
                     </div>      
                     <div class="form-group">
                       <label for="email">Correo electrónico:</label>
-                      <input type="email" class="form-control" id="email">
+                      <input type="email" class="form-control" id="email" required>
                     </div> 
                     <%
                         ReCaptcha c = ReCaptchaFactory.newSecureReCaptcha("6LeYWT4UAAAAABnQP_9RWZUJtc_w1axpT7F0wln1", "6LeYWT4UAAAAAEgGETIGFadXLo1bUY6XxEXF_Et_", false);
@@ -189,55 +193,6 @@
                 </div>
             </div>
         </div>
-                
-                    <script>                
-                                           $(function () {
-                       var bindDatePicker = function() {
-                                    $(".date").datetimepicker({
-                            format:'YYYY-MM-DD',
-                                            icons: {
-                                                    time: "fa fa-clock-o",
-                                                    date: "fa fa-calendar",
-                                                    up: "fa fa-arrow-up",
-                                                    down: "fa fa-arrow-down"
-                                            }
-                                    }).find('input:first').on("blur",function () {
-                                            // check if the date is correct. We can accept dd-mm-yyyy and yyyy-mm-dd.
-                                            // update the format if it's yyyy-mm-dd
-                                            var date = parseDate($(this).val());
-
-                                            if (! isValidDate(date)) {
-                                                    //create date based on momentjs (we have that)
-                                                    date = moment().format('YYYY-MM-DD');
-                                            }
-
-                                            $(this).val(date);
-                                    });
-                            }
-
-                       var isValidDate = function(value, format) {
-                                    format = format || false;
-                                    // lets parse the date to the best of our knowledge
-                                    if (format) {
-                                            value = parseDate(value);
-                                    }
-
-                                    var timestamp = Date.parse(value);
-
-                                    return isNaN(timestamp) == false;
-                       }
-
-                       var parseDate = function(value) {
-                                    var m = value.match(/^(\d{1,2})(\/|-)?(\d{1,2})(\/|-)?(\d{4})$/);
-                                    if (m)
-                                            value = m[5] + '-' + ("00" + m[3]).slice(-2) + '-' + ("00" + m[1]).slice(-2);
-
-                                    return value;
-                       }
-
-                       bindDatePicker();
-                     });
-                      </script>
-                    
+                           
     </body>
 </html>

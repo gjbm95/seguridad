@@ -111,7 +111,7 @@
                       for(Producto producto : almacen.obtenerListaProductos())
                       {
                          
-                        out.print("<form method='post' action='producto.jsp'>"
+                        out.print(""
                             + ""+
                             "<div class='col-md-4' style='background-color:#005A31;'>"+
                             "<br>"+
