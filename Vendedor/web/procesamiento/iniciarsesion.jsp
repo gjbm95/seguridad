@@ -30,14 +30,28 @@
             String challenge = request.getParameter("recaptcha_challenge_field");
             String uresponse = request.getParameter("recaptcha_response_field");
             ReCaptchaResponse reCaptchaResponse = reCaptcha.checkAnswer(remoteAddr, challenge, uresponse);
+            int status=usu.obtenerStatus(usuario);
+            System.out.println("el status es "+status);
             
-            if((usu.IniciarSesion(usuario,pass))&&(reCaptchaResponse.isValid())){
+            if((usu.IniciarSesion(usuario,pass))&&(reCaptchaResponse.isValid())&&(status==1)){
           
             session.setAttribute("usuario",new DAO.Control().obtenerObjetoCliente(usuario).getNombre() + " " + new DAO.Control().obtenerObjetoCliente(usuario).getApellido());
             response.sendRedirect("https://garryjunior.com.ve:8443/Vendedor/");
             }else{
-            out.print("<script> alert('Usuario o Contrasena Incorrecto');"
+                
+                if(Sistema.intentos<=3){
+                out.print("<script> alert('Usuario o Contrasena Incorrecto');"
                     + " window.location='https://garryjunior.com.ve:8443/Vendedor/';</script>");
+                }
+            
+            if(Sistema.intentos>3){
+            usu.desactivarCuenta(usuario);
+            out.print("<script> alert('A alcanzado el numero de intentos maximos, su cuenta ha sido desactivada');"
+                    + " window.location='https://garryjunior.com.ve:8443/Vendedor/';</script>");
+            Sistema.intentos= 0;
+            }
+            Sistema.intentos= Sistema.intentos + 1;
+               
             }
 
 %>

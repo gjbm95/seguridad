@@ -102,6 +102,7 @@ public class Control {
             elemento.setAttribute("cedula", cliente.getCedula());
             elemento.setAttribute("correo", cliente.getCorreo());
             elemento.setAttribute("contrasena", cliente.getContrasena());
+            elemento.setAttribute("status", Integer.toString(cliente.getStatus()));
             root.addContent(elemento);
             document.removeContent();
             document.addContent(root);
@@ -669,7 +670,7 @@ public class Control {
                                  ,e.getAttributeValue("apellido")
                                  ,e.getAttributeValue("cedula")
                                  ,e.getAttributeValue("correo")
-                                 ,e.getAttributeValue("contrasena"));
+                                 ,e.getAttributeValue("contrasena"),Integer.parseInt(e.getAttributeValue("status")));
                         Element fact = e.getChild("factura");
                         Element pro=fact.getChild("producto");
                         ArrayList<Factura> factura= new ArrayList<Factura>();
@@ -698,19 +699,107 @@ public class Control {
         return null; 
     }
     
-    /* public Element obtenerFactura(List raiz,int id){
+    public void activarCuenta(String cedula){
         
-         Iterator i = raiz.iterator();
-          while (i.hasNext()) {
-            Element e = (Element) i.next();
-              System.out.println("ESTO ES E "+e.getAttributeValue("id"));
-            if (id==Integer.parseInt(e.getAttributeValue("id"))) {
-                System.out.println("ENTRO EN EL IF DE OBTENER");
-                return e;
+        File xmlFile = new File(filelocation_cliente);
+        Document document = null;
+        if(xmlFile.exists()) {
+            try {
+                // try to load document from xml file if it exist
+                // create a file input stream
+                FileInputStream fis = new FileInputStream(xmlFile);
+                // create a sax builder to parse the document
+                SAXBuilder sb = new SAXBuilder();
+                // parse the xml content provided by the file input stream and create a Document object
+                document = sb.build(fis);
+                // get the root element of the document
+                root = document.getRootElement();
+                fis.close();
+            } catch (JDOMException ex) {
+                Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
             }
+         } 
+            Element aux = new Element("cliente");
+            List recursos = root.getChildren("cliente");
+            
+                aux = obtenerCliente(recursos,cedula);
+                if (aux != null) {
+                    aux.removeAttribute("status");
+                    aux.setAttribute("status","1");
+                    updateDocumentCliente(); 
+                }
         }
-      return null; 
-    }*/
+    
+    public void desactivarCuenta(String cedula){
+        
+        File xmlFile = new File(filelocation_cliente);
+        Document document = null;
+        if(xmlFile.exists()) {
+            try {
+                // try to load document from xml file if it exist
+                // create a file input stream
+                FileInputStream fis = new FileInputStream(xmlFile);
+                // create a sax builder to parse the document
+                SAXBuilder sb = new SAXBuilder();
+                // parse the xml content provided by the file input stream and create a Document object
+                document = sb.build(fis);
+                // get the root element of the document
+                root = document.getRootElement();
+                fis.close();
+            } catch (JDOMException ex) {
+                Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
+            }
+         } 
+            Element aux = new Element("cliente");
+            List recursos = root.getChildren("cliente");
+            
+                aux = obtenerCliente(recursos,cedula);
+                if (aux != null) {
+                    aux.removeAttribute("status");
+                    aux.setAttribute("status","0");
+                    updateDocumentCliente(); 
+                }
+        }
+    
+        public int obtenerStatus(String cedula){
+        
+        File xmlFile = new File(filelocation_cliente);
+        Document document = null;
+        int resultado=0;
+        if(xmlFile.exists()) {
+            try {
+                // try to load document from xml file if it exist
+                // create a file input stream
+                FileInputStream fis = new FileInputStream(xmlFile);
+                // create a sax builder to parse the document
+                SAXBuilder sb = new SAXBuilder();
+                // parse the xml content provided by the file input stream and create a Document object
+                document = sb.build(fis);
+                // get the root element of the document
+                root = document.getRootElement();
+                fis.close();
+            } catch (JDOMException ex) {
+                Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
+            }
+         } 
+            Element aux = new Element("cliente");
+            List recursos = root.getChildren("cliente");
+            
+                aux = obtenerCliente(recursos,cedula);
+                if (aux != null) {
+                    
+                    resultado=Integer.parseInt(aux.getAttributeValue("status"));
+                }
+                
+                return resultado;
+        }
+    }
     
     
-}
+

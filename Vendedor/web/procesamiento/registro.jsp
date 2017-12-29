@@ -26,7 +26,7 @@
     ReCaptchaResponse reCaptchaResponse = reCaptcha.checkAnswer(remoteAddr, challenge, uresponse);
     if (reCaptchaResponse.isValid()) {
       
-      Cliente cli=new Cliente(nombre,apellido, cedula,email,Integer.toString(contrasena.hashCode())); 
+      Cliente cli=new Cliente(nombre,apellido, cedula,email,Integer.toString(contrasena.hashCode()),1); 
       //LLamada a DAO
       Usuario usu=new Usuario();
       usu.AgregarCliente(cli);
