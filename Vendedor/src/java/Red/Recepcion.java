@@ -5,6 +5,7 @@
  */
 package Red;
 
+import Controladores.Facturacion;
 import Controladores.Usuario;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -61,10 +62,9 @@ public class Recepcion extends Thread {
                     break;
 
                     case"2":
-                      //Recibo el id de la factura 
+                     //Recibo el id de la factura 
                     int idfactura = Integer.parseInt(mensaje.split(":")[1]);
-                    Usuario usu=new Usuario();
-                    usu.generarTxtFact(idfactura);    
+                    new Facturacion(idfactura).start();
                     break;
                     case"3":
 

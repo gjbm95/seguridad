@@ -26,6 +26,7 @@ public class Sistema {
      public static String llaveServerVendedor = "";
      public static String llaveClientVendedor = "";
      public static boolean suiche = true; 
+     public static boolean espera = true; 
      
    //Almaceno los datos
      

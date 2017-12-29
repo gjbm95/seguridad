@@ -300,7 +300,7 @@ public class Control {
      Retorna el cliente por su cedula
     */
     
-        public Element obtenerCliente(List raiz,String cedula){
+    public Element obtenerCliente(List raiz,String cedula){
         
          Iterator i = raiz.iterator();
           while (i.hasNext()) {
@@ -609,6 +609,7 @@ public class Control {
             List recursos = root.getChildren("cliente");
             
                 aux = obtenerCliente(recursos,cedula);
+                
                 if (aux != null) {
                     Element factura= new Element("factura");
                     factura.setAttribute("id",Integer.toString(fac.getId()));
@@ -673,7 +674,11 @@ public class Control {
                         Element pro=fact.getChild("producto");
                         ArrayList<Factura> factura= new ArrayList<Factura>();
                         factura.add(new Factura(Integer.parseInt(fact.getAttributeValue("id")),
-                                new Producto(Integer.parseInt(pro.getAttributeValue("id")),pro.getAttributeValue("nombre"),pro.getAttributeValue("descripcion"),Float.parseFloat(pro.getAttributeValue("precio")),pro.getAttributeValue("imagen"))));
+                                new Producto(Integer.parseInt(pro.getAttributeValue("id"))
+                                        ,pro.getAttributeValue("nombre")
+                                        ,pro.getAttributeValue("descripcion")
+                                        ,Float.parseFloat(pro.getAttributeValue("precio"))
+                                        ,pro.getAttributeValue("imagen"))));
                         
                         resultado.setFactura(factura);
                         

@@ -40,6 +40,7 @@
         if (respcliente instanceof Boolean){
         if((boolean)respcliente){
           new DAO.Control().generarFactura(cedula,new Factura(idfactura,new DAO.Control().obtenerObjetoProducto(Integer.parseInt(idproducto))));
+          Sistema.espera = false; 
           response.sendRedirect("https://garryjunior.com.ve:8443/Vendedor/producto_pago.jsp?id="+idproducto);
         }else 
           out.print("<script> alert('La transaccion ha fallado en el banco del cliente'); window.history.back();</script>");
