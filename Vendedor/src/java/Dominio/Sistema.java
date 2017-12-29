@@ -33,6 +33,7 @@ public class Sistema {
      public static String rutaProductos="";
      public static String rutaUsuarios="";
      public static String rutaFactura="";
+     public static String rutaSeguridad="";
      
    //Datos Bancarios del Vendedor
      public static String numerocuenta="463234823423323423333"; 

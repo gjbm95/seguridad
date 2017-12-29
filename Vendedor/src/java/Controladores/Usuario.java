@@ -10,18 +10,24 @@ import Dominio.Cliente;
 import Dominio.Factura;
 import Dominio.Producto;
 import Dominio.Sistema;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.InvalidKeyException;
 import java.security.KeyFactory;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.PrivateKey;
+import java.security.SecureRandom;
 import java.security.Signature;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.ArrayList;
@@ -87,7 +93,7 @@ public class Usuario extends HttpServlet{
             try
                 {
                     //Crear un objeto File se encarga de crear o abrir acceso a un archivo que se especifica en su constructor
-                    System.out.println(filelocation+cliente.getCedula()+"_"+id+".txt");
+                    String direccion = (filelocation+cliente.getCedula()+"_"+id+".txt");
                     File archivo=new File(filelocation+cliente.getCedula()+"_"+id+".txt");
                     //Crear objeto FileWriter que sera el que nos ayude a escribir sobre archivo
                     FileWriter escribir=new FileWriter(archivo,true);
@@ -104,33 +110,34 @@ public class Usuario extends HttpServlet{
                     //Cerramos la conexion
                     escribir.close();
                     System.out.println("Se ha generado la factura con exito!");
+                    
+                    //Iniciando proceso de firma del archivo: 
+                    establecerParametros(obtenerTexto(direccion),Sistema.rutaSeguridad+"Vendedor/pkcs8_key");
+                    writeToFile(filelocation+cliente.getCedula()+"_"+id+"(signed).txt");
+ 
                 }catch(Exception e)
                     {
                       System.out.println(e.getMessage());
                     }
     }
      
-     public void firmarArchivo(){
-        try { 
-            Signature dsa = Signature.getInstance("SHA1withDSA", "SUN");
-            
-            
-            
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NoSuchProviderException ex) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-      
-     }
-     
-     
+
+
      	//Method to retrieve the Private Key from a file
 	public PrivateKey getPrivate(String filename) throws Exception {
-		byte[] keyBytes = Files.readAllBytes(new File(filename).toPath());
-		PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(keyBytes);
-		KeyFactory kf = KeyFactory.getInstance("RSA");
-		return kf.generatePrivate(spec);
+		// Get instance and initialize a KeyPairGenerator object.
+                KeyPairGenerator keyGen = KeyPairGenerator.getInstance("DSA", "SUN");
+                SecureRandom random = SecureRandom.getInstance("SHA1PRNG", "SUN");
+                keyGen.initialize(1024, random);
+
+                // Get a PrivateKey from the generated key pair.
+                KeyPair keyPair = keyGen.generateKeyPair();
+                PrivateKey privateKey = keyPair.getPrivate();
+            
+                byte[] keyBytes = Files.readAllBytes(new File(filename).toPath());
+		PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(privateKey.getEncoded());
+                KeyFactory kf = KeyFactory.getInstance("RSA");
+                return kf.generatePrivate(spec);
 	}
     
         //The method that signs the data using the private key that is stored in keyFile path
@@ -159,6 +166,30 @@ public class Usuario extends HttpServlet{
 		list.add(data.getBytes());
 		list.add(sign(data, keyFile));
 	}
+        
+        public String obtenerTexto(String direccion){
+           String respuesta="";
+           
+           File f = new File( direccion ); 
+            BufferedReader entrada = null; 
+            try { 
+            entrada = new BufferedReader( new FileReader( f ) ); 
+            String linea; 
+            while(entrada.ready()){ 
+            linea = entrada.readLine(); 
+             respuesta = respuesta + linea +  " ";
+            } 
+            }catch (IOException e) { 
+            e.printStackTrace(); 
+            } 
+            finally 
+            { 
+                try{ 
+                entrada.close(); 
+                }catch(IOException e1){} 
+            } 
+          return respuesta; 
+        }
     
     
     
