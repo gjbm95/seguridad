@@ -63,7 +63,6 @@ public class Recepcion extends Thread {
                     case"2":
                       //Recibo el id de la factura 
                     int idfactura = Integer.parseInt(mensaje.split(":")[1]);
-                        System.out.println("ESTOY EN CASE 2 EL ID ES "+idfactura);
                     Usuario usu=new Usuario();
                     usu.generarTxtFact(idfactura);    
                     break;

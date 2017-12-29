@@ -41,6 +41,7 @@
                    Sistema.llaveServerVendedor = getServletConfig().getServletContext().getRealPath("seguridad/Vendedor/serverVendedor_ks");
                    Sistema.rutaProductos = getServletConfig().getServletContext().getRealPath("basedatos/productos.xml");
                    Sistema.rutaUsuarios = getServletConfig().getServletContext().getRealPath("basedatos/usuarios.xml");
+                   Sistema.rutaFactura = getServletConfig().getServletContext().getRealPath("facturas/");
                    if (request.getSession().getAttribute("usuario")==null)
                    {
                      out.print("<script> alert('Usted debe iniciar Sesion'); </script>");

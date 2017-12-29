@@ -69,11 +69,13 @@ public class Usuario extends HttpServlet{
         Control dao= new Control();
         cliente=dao.obtenerCliente(id);
         String nuevalinea = System.getProperty("line.separator");
+        
     try
         {
             //Crear un objeto File se encarga de crear o abrir acceso a un archivo que se especifica en su constructor
-            File archivo=new File(filelocation);
-
+            System.out.println(filelocation+cliente.getCedula()+"_"+id+".txt");
+            File archivo=new File(filelocation+cliente.getCedula()+"_"+id+".txt");
+            
             //Crear objeto FileWriter que sera el que nos ayude a escribir sobre archivo
             FileWriter escribir=new FileWriter(archivo,true);
 
