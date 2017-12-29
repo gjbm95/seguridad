@@ -48,7 +48,7 @@
             usu.desactivarCuenta(usuario);
             out.print("<script> alert('A alcanzado el numero de intentos maximos, su cuenta ha sido desactivada');"
                     + " window.location='https://garryjunior.com.ve:8443/Vendedor/';</script>");
-            Sistema.intentos= 0;
+            Sistema.intentos= 1;
             }
             Sistema.intentos= Sistema.intentos + 1;
                
