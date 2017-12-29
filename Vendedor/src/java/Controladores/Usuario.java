@@ -160,6 +160,21 @@ public class Usuario extends HttpServlet{
 		list.add(sign(data, keyFile));
 	}
     
+        public void activarCuenta(String cedula){
+        Control control=new Control();
+        control.activarCuenta(cedula);
+        }
+        
+        public void desactivarCuenta(String cedula){
+        Control control=new Control();
+        control.desactivarCuenta(cedula);
+        }
     
-    
+        public int obtenerStatus(String Cedula){
+        Control control=new Control();
+        int resultado;
+        resultado=control.obtenerStatus(Cedula);
+        return resultado;
+        
+        }
 }

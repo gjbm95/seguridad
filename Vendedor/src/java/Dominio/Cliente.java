@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author Junior
  */
 public class Cliente {
+    private int status;
     private String nombre; 
     private String apellido; 
     private String cedula; 
@@ -22,20 +23,22 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(String nombre, String apellido, String cedula, String correo, String contrasena) {
+    public Cliente(String nombre, String apellido, String cedula, String correo, String contrasena,int status) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.cedula = cedula;
         this.correo = correo;
         this.contrasena = contrasena;
+        this.status=status;
     }
 
-    public Cliente(String nombre, String apellido, String cedula, String correo, String contrasena, ArrayList<Factura> factura) {
+    public Cliente(String nombre, String apellido, String cedula, String correo, String contrasena,int status,ArrayList<Factura> factura) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.cedula = cedula;
         this.correo = correo;
         this.contrasena = contrasena;
+        this.status=status;
         this.factura = factura;
     }
     
@@ -90,6 +93,14 @@ public class Cliente {
 
     public void setFactura(ArrayList<Factura> factura) {
         this.factura = factura;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
     
     
