@@ -671,17 +671,15 @@ public class Control {
                                  ,e.getAttributeValue("cedula")
                                  ,e.getAttributeValue("correo")
                                  ,e.getAttributeValue("contrasena"),Integer.parseInt(e.getAttributeValue("status")));
-                        Element fact = e.getChild("factura");
-                        Element pro=fact.getChild("producto");
-                        ArrayList<Factura> factura= new ArrayList<Factura>();
-                        factura.add(new Factura(Integer.parseInt(fact.getAttributeValue("id")),
+                        Element pro=a.getChild("producto");
+                        Factura factura;
+                        factura = (new Factura(Integer.parseInt(a.getAttributeValue("id")),
                                 new Producto(Integer.parseInt(pro.getAttributeValue("id"))
                                         ,pro.getAttributeValue("nombre")
                                         ,pro.getAttributeValue("descripcion")
                                         ,Float.parseFloat(pro.getAttributeValue("precio"))
                                         ,pro.getAttributeValue("imagen"))));
-                        
-                        resultado.setFactura(factura);
+                        resultado.setFacturaactual(factura);
                         
                         }
                      }

@@ -103,11 +103,9 @@ public class Usuario extends HttpServlet{
                     escribir.write("EL APELLIDO DEL CLIENTE ES : "+cliente.getApellido()+nuevalinea);
                     escribir.write("LA CEDULA DEL CLIENTE ES : "+cliente.getCedula()+nuevalinea);
                     escribir.write("EL CORREO DEL CLIENTE ES : "+cliente.getCorreo()+nuevalinea);
-                    for ( Factura factura : cliente.getFactura()) {
-                        escribir.write("LA ID DE LA FACTURA ES : "+factura.getId()+nuevalinea);
-                        escribir.write("EL PRODUCTO ES : "+factura.getProducto().getNombre()+nuevalinea);
-                        escribir.write("LA DESCRIPCION DEL PRODUCTOS ES : "+factura.getProducto().getDescripcion()+nuevalinea);
-                    }
+                    escribir.write("LA ID DE LA FACTURA ES : "+cliente.getFacturaactual().getId()+nuevalinea);
+                    escribir.write("EL PRODUCTO ES : "+cliente.getFacturaactual().getProducto().getNombre()+nuevalinea);
+                    escribir.write("LA DESCRIPCION DEL PRODUCTOS ES : "+cliente.getFacturaactual().getProducto().getDescripcion()+nuevalinea);
                     //Cerramos la conexion
                     escribir.close();
                     System.out.println("Se ha generado la factura con exito!");

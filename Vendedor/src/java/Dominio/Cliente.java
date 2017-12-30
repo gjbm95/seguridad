@@ -18,7 +18,8 @@ public class Cliente {
     private String cedula; 
     private String correo; 
     private String contrasena;
-    private ArrayList<Factura> factura;
+    private ArrayList<Factura> facturas;
+    private Factura facturaactual; 
 
     public Cliente() {
     }
@@ -32,14 +33,14 @@ public class Cliente {
         this.status=status;
     }
 
-    public Cliente(String nombre, String apellido, String cedula, String correo, String contrasena,int status,ArrayList<Factura> factura) {
+    public Cliente(String nombre, String apellido, String cedula, String correo, String contrasena,int status,ArrayList<Factura> facturas) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.cedula = cedula;
         this.correo = correo;
         this.contrasena = contrasena;
         this.status=status;
-        this.factura = factura;
+        this.facturas = facturas;
     }
     
     
@@ -87,12 +88,12 @@ public class Cliente {
         this.contrasena = contrasena;
     }
 
-    public ArrayList<Factura> getFactura() {
-        return factura;
+    public ArrayList<Factura> getFacturas() {
+        return facturas;
     }
 
-    public void setFactura(ArrayList<Factura> factura) {
-        this.factura = factura;
+    public void setFacturas(ArrayList<Factura> facturas) {
+        this.facturas = facturas;
     }
 
     public int getStatus() {
@@ -102,6 +103,16 @@ public class Cliente {
     public void setStatus(int status) {
         this.status = status;
     }
+
+    public Factura getFacturaactual() {
+        return facturaactual;
+    }
+
+    public void setFacturaactual(Factura facturaactual) {
+        this.facturaactual = facturaactual;
+    }
+    
+    
     
     
     
