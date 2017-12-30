@@ -8,6 +8,8 @@ package banco;
 import BancoCliente.Envio;
 import BancoCliente.VistaC;
 import BancoVendedor.VistaV;
+import Cliente.RealizarDescarga;
+import Cliente.ReciboArchivo;
 import Dominio.Sistema;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -51,7 +53,6 @@ public class Banco {
             }
             case "3":{
                     new Cliente.Control().start();
-                    
             break;
             }
             case "4": {

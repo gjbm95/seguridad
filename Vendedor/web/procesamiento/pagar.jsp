@@ -12,28 +12,43 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
+        if(((String)request.getSession().getAttribute("confirmacion")).equals(request.getParameter("confirmacion"))){
         //Datos de la tarjeta 
-        String numerotarjeta =(String) request.getParameter("numerotarjeta");
-        String codigoseguridad =(String) request.getParameter("codigoseguridad");
-        String tipotarjeta =(String) request.getParameter("numerotarjeta");
-        String vencimiento = (String) request.getParameter("vencimiento");
+        String numerotarjeta =(String) request.getSession().getAttribute("numerotarjeta");
+        String codigoseguridad =(String) request.getSession().getAttribute("codigoseguridad");
+        String tipotarjeta =(String) request.getSession().getAttribute("tipo");
+        String vencimiento = (String) request.getSession().getAttribute("vencimiento");
         //Datos del usuario
-        String nombre =(String) request.getParameter("name");
-        String apellido =(String) request.getParameter("lastname");
-        String cedula =(String) request.getParameter("cedula");
-        String correo =(String) request.getParameter("email");
+        String nombre =(String) request.getSession().getAttribute("name");
+        String apellido =(String) request.getSession().getAttribute("lastname");
+        String cedula =(String) request.getSession().getAttribute("cedula");
+        String correo =(String) request.getSession().getAttribute("email");
         //Datos de la Compra
-        String idproducto = (String) request.getParameter("idproducto");  
-        String monto = (String) request.getParameter("monto");   
+        String idproducto = (String) request.getSession().getAttribute("idproducto");  
+        String monto = (String) request.getSession().getAttribute("monto"); 
+        //Destruyendo sessiones: 
+        request.getSession().removeAttribute("numerotarjeta");
+        request.getSession().removeAttribute("codigoseguridad");
+        request.getSession().removeAttribute("tipo");
+        request.getSession().removeAttribute("vencimiento");
+        request.getSession().removeAttribute("name");
+        request.getSession().removeAttribute("lastname");
+        request.getSession().removeAttribute("cedula");
+        request.getSession().removeAttribute("email");
+        request.getSession().removeAttribute("idproducto");
+        request.getSession().removeAttribute("monto");
+        request.getSession().removeAttribute("confirmacion");
         //Validacion del Captcha
+        /*
         String remoteAddr = request.getRemoteAddr();
         ReCaptchaImpl reCaptcha = new ReCaptchaImpl();
         reCaptcha.setPrivateKey("6LeYWT4UAAAAAEgGETIGFadXLo1bUY6XxEXF_Et_");
         String challenge = request.getParameter("recaptcha_challenge_field");
         String uresponse = request.getParameter("recaptcha_response_field");
         ReCaptchaResponse reCaptchaResponse = reCaptcha.checkAnswer(remoteAddr, challenge, uresponse);
+        */
         int idfactura = new DAO.Control().obtenerNFactura();
-        if (reCaptchaResponse.isValid()) {    
+        //if (reCaptchaResponse.isValid()) {    
         //-------------------------------------------
         Object respcliente = Envio.enviodato("1:"+Integer.toString(numerotarjeta.hashCode())+":"+codigoseguridad
         +":"+vencimiento+":"+tipotarjeta+":"+monto+":"+cedula+":"+Sistema.numerocuenta+":"+Integer.toString(idfactura),"bancocliente");
@@ -51,9 +66,11 @@
         }
         //-------------------------------------------
         //out.print("<script> alert('Registro Exitoso'); </script>");
-        } else {
-           out.print("<script> alert('Error en el captcha');  window.history.back();</script>");
+        // } else {
+        //   out.print("<script> alert('Error en el captcha');  window.history.back();</script>");
+        //}
+        }else{
+             out.print("<script> alert('El numero de confirmacion es erroneo!');  window.history.back(2);</script>");
         }
-
 
 %>

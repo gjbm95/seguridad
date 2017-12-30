@@ -41,7 +41,7 @@
                    Sistema.llaveServerVendedor = getServletConfig().getServletContext().getRealPath("seguridad/Vendedor/serverVendedor_ks");
                    Sistema.rutaProductos = getServletConfig().getServletContext().getRealPath("basedatos/productos.xml");
                    Sistema.rutaUsuarios = getServletConfig().getServletContext().getRealPath("basedatos/usuarios.xml");
-                   Sistema.rutaFactura = getServletConfig().getServletContext().getRealPath("basedatos/factura.txt");
+                   Sistema.rutaFactura = getServletConfig().getServletContext().getRealPath("facturas/");
                   
             %>
             <header>

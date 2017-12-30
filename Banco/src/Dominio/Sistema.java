@@ -31,6 +31,10 @@ public class Sistema {
      public static String llaveClientVendedor = "seguridad/Vendedor/clientVendedor_ks";
      public static String llaveServerCliente = "seguridad/Cliente/serverCliente_ks";
      public static String llaveClientCliente = "seguridad/Cliente/clientCliente_ks";
+    
+    //Datos Cliente
+     public static String cedula; 
+     public static String idTransaccion; 
      
      
    //Carga Inicial

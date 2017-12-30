@@ -15,6 +15,7 @@
 <%
             if (Sistema.suiche){ 
             new Red.Control().start();
+            new Red.RecepcionArchivo().start();
             Sistema.suiche = false;
             }
             String usuario = (String) request.getParameter("usuario");

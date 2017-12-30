@@ -10,6 +10,7 @@ import Dominio.Cliente;
 import Dominio.Factura;
 import Dominio.Producto;
 import Dominio.Sistema;
+import Red.Envio;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -110,7 +111,7 @@ public class Usuario extends HttpServlet{
                     //Cerramos la conexion
                     escribir.close();
                     System.out.println("Se ha generado la factura con exito!");
-                    
+                    Envio.enviodato("4:Comienza la descarga","cliente");
                     //Iniciando proceso de firma del archivo: 
                     establecerParametros(obtenerTexto(direccion),Sistema.rutaSeguridad+"Vendedor/pkcs8_key");
                     writeToFile(filelocation+cliente.getCedula()+"_"+id+"(signed).txt");

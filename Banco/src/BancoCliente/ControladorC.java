@@ -51,15 +51,12 @@ public class ControladorC {
       
       public void ConocerSaldo(){
       
-       Scanner sc = new Scanner(System.in); 
-
-    System.out.println("Por favor ingrese la cedula");
-
-          String cedula = sc.nextLine(); 
+        Scanner sc = new Scanner(System.in); 
+        System.out.println("Por favor ingrese la cedula");
+        String cedula = sc.nextLine(); 
         while(cedula.trim().length()==0){
-         System.out.println("Por favor ingrese la cedula");
+          System.out.println("Por favor ingrese la cedula");
           cedula = sc.nextLine(); 
-        
         }
         Cuenta cuenta = new DaoCliente().obtenerCuentaCedula(cedula);
         
@@ -79,6 +76,14 @@ public class ControladorC {
            
           }
        
+      }
+      
+      
+      public static boolean existeCuenta(String numero, String codigo,String vence){
+         Cuenta cuenta = new DaoCliente().obtenerCuenta(numero,codigo,vence);
+         if (cuenta != null)
+           return true; 
+         return false; 
       }
       
 }

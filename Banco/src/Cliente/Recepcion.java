@@ -8,6 +8,7 @@ package Cliente;
 
 import BancoVendedor.ControladorV;
 import BancoVendedor.*;
+import Dominio.Sistema;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -56,7 +57,8 @@ public class Recepcion extends Thread {
                //----------------------------------------------------------------------
                switch(mensaje.split(":")[0]){
                     case"0":
-
+                        Sistema.idTransaccion = mensaje.split(":")[1];
+                        Sistema.cedula = mensaje.split(":")[2];
                     break;
                     case"1":
                         System.out.println("La compra ha sido exitosa, en breve se emitira su factura!");
@@ -65,10 +67,16 @@ public class Recepcion extends Thread {
                         System.out.println("Una transaccion no se ha efectuado por saldo insuficiente");
                     break;
                     case"3":
-                    
+                        System.out.println("-----------------------------------------------------------------");
+                        System.out.println("Se ha detectado una transaccion en su banco!");
+                        System.out.println("Confirme usando el siguiente codigo: " +mensaje.split(":")[1]);
+                        System.out.println("-----------------------------------------------------------------");
+                    break;
+                    case"4":
+                        new ReciboArchivo().descargarArchivo(Sistema.ipvendedor,Sistema.puertovendedor+1,1);
+                        System.out.println("Se ha recibido la factura con exito!");
                     break;
                }
-    
                //Con este codigo es que responde el servidor:
                salidaObjeto.writeObject(respuesta);
                

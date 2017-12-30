@@ -58,6 +58,7 @@ public class Recepcion extends Thread {
                           System.out.println("Se ha debitado la cantidad en la cuenta del vendedor exitosamente");
                           respuesta = true;
                           Envio.enviodato("1:","cliente");
+                          Envio.enviodato("0:"+mensaje.split(":")[8]+":"+mensaje.split(":")[6],"cliente");
                           }else 
                           respuesta = false;
                      }else if (resultado.equals("Fallido")){
@@ -70,10 +71,15 @@ public class Recepcion extends Thread {
                      
                     break;
                     case"2":
-
+                        if (ControladorC.existeCuenta(mensaje.split(":")[2],mensaje.split(":")[3],mensaje.split(":")[4])){
+                         System.out.println("Se ha detectado una solicitud de transaccion!");
+                         System.out.println("Enviando Codigo de Confirmacion...");
+                         Envio.enviodato("3:"+mensaje.split(":")[1],"cliente");
+                         respuesta = true;
+                        }else 
+                          respuesta = false;
                     break;
                     case"3":
-
                     break;
                }
     

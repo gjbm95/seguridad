@@ -123,7 +123,7 @@
                     <IMG WIDTH=220 HEIGHT=220 SRC="<% out.print(producto.getImagen()); %>">
                 </div>
                 <div class="col-md-6">
-                    <form action="procesamiento/pagar.jsp" method="post">
+                    <form action="procesamiento/confirmacion.jsp" method="post">
                     <div class="col-md-12">
                         <div style="font-size: x-large">
                         <strong><% out.print(producto.getNombre()); %></strong>
@@ -182,8 +182,8 @@
                     <div class="form-group">
                       <label for="email">Correo electrónico:</label>
                       <input type="email" class="form-control" name="email" id="email" required>
-                    </div> 
-                    <%
+                    </div>   
+                        <%
                         ReCaptcha c = ReCaptchaFactory.newSecureReCaptcha("6LeYWT4UAAAAABnQP_9RWZUJtc_w1axpT7F0wln1", "6LeYWT4UAAAAAEgGETIGFadXLo1bUY6XxEXF_Et_", false);
                         out.print(c.createRecaptchaHtml(null, null));
                     %>
@@ -198,6 +198,11 @@
                 </div>
             </div>
         </div>
-                           
+       
+            
+                        
+                        
+                        
+                        
     </body>
 </html>
