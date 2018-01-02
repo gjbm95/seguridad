@@ -318,8 +318,7 @@ public class Control {
         
         public ArrayList<Producto> obtenerListaProductos(){
         
-        ArrayList<Producto> producto = new ArrayList<Producto>();
-            
+        ArrayList<Producto> producto = new ArrayList<Producto>(); 
         File xmlFile = new File(filelocation);
         Document document = null;
         if(xmlFile.exists()) {
@@ -625,7 +624,7 @@ public class Control {
                     aux.addContent(factura);
                     factura.addContent(producto);
                     document.removeContent();
-                    document.addContent(root);
+                    document.addContent(root.detach());
                       try {
                     FileWriter writer = new FileWriter(xmlFile);
                     XMLOutputter outputter = new XMLOutputter();

@@ -14,10 +14,10 @@ import BancoVendedor.DaoVendedor;
  */
 public class Sistema {
     //Datos de Conexion 
-     public static String ipbancov = "localhost"; 
-     public static String ipbancoc = "localhost";
-     public static String ipvendedor = "localhost";
-     public static String ipcliente = "localhost";
+     public static String ipbancov = "192.168.1.100"; 
+     public static String ipbancoc = "192.168.1.100";
+     public static String ipvendedor = "192.168.1.105";
+     public static String ipcliente = "192.168.1.105";
      public static int    puertov = 8888; 
      public static int    puertoc = 1111;
      public static int    puertovendedor = 7777;

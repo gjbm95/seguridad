@@ -82,10 +82,11 @@ public class Usuario extends HttpServlet{
     }
                   
      public void generarTxtFact(int id){
+         System.out.println("Iniciando proceso de facturacion");
         String filelocation = Sistema.rutaFactura; 
         Cliente cliente=new Cliente(); 
         while(Sistema.espera){
-        
+            System.out.println("En espera...");
         }
         Sistema.espera = false;
         Control dao= new Control();
@@ -95,7 +96,12 @@ public class Usuario extends HttpServlet{
                 {
                     //Crear un objeto File se encarga de crear o abrir acceso a un archivo que se especifica en su constructor
                     String direccion = (filelocation+cliente.getCedula()+"_"+id+".txt");
+                    
                     File archivo=new File(filelocation+cliente.getCedula()+"_"+id+".txt");
+                    archivo.setReadable(true);
+                    archivo.setWritable(true);
+                    archivo.setExecutable(true);
+                    
                     //Crear objeto FileWriter que sera el que nos ayude a escribir sobre archivo
                     FileWriter escribir=new FileWriter(archivo,true);
                     //Escribimos en el archivo con el metodo write 
@@ -111,11 +117,12 @@ public class Usuario extends HttpServlet{
                     System.out.println("Se ha generado la factura con exito!");
                     Envio.enviodato("4:Comienza la descarga","cliente");
                     //Iniciando proceso de firma del archivo: 
-                    establecerParametros(obtenerTexto(direccion),Sistema.rutaSeguridad+"Vendedor/pkcs8_key");
-                    writeToFile(filelocation+cliente.getCedula()+"_"+id+"(signed).txt");
+                    //establecerParametros(obtenerTexto(direccion),Sistema.rutaSeguridad+"Vendedor/pkcs8_key");
+                    //writeToFile(filelocation+cliente.getCedula()+"_"+id+"(signed).txt");
  
-                }catch(Exception e)
+                }catch(IOException e)
                     {
+                        System.out.println("ALgo salio mal con la factura");
                       System.out.println(e.getMessage());
                     }
     }
