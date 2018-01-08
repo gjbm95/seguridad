@@ -1,0 +1,7 @@
+EL NOMBRE DEL CLIENTE ES : Garry
+EL APELLIDO DEL CLIENTE ES : Bruno
+LA CEDULA DEL CLIENTE ES : 24939724
+EL CORREO DEL CLIENTE ES : garryjrbruno@hotmail.com
+LA ID DE LA FACTURA ES : 12
+EL PRODUCTO ES : Celular
+LA DESCRIPCION DEL PRODUCTOS ES : Pantalla Infinity: pantalla sin bordes, totalmente frontal y de borde a borde. La resolucion predeterminada es Full HD y se puede cambiar a Quad HD en la configuracion. Memoria: memoria interna de 64 GB, RAM 4 GB. Resolucion de la camara - Delantera: 8MP AF, Posterior 12 MP AF.

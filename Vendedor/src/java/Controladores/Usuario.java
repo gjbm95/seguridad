@@ -90,7 +90,9 @@ public class Usuario extends HttpServlet{
         }
         Sistema.espera = false;
         Control dao= new Control();
+       
         cliente=dao.obtenerCliente(id);
+     
         String nuevalinea = System.getProperty("line.separator");
             try
                 {

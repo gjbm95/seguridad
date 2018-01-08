@@ -54,6 +54,7 @@
         +":"+vencimiento+":"+tipotarjeta+":"+monto+":"+cedula+":"+Sistema.numerocuenta+":"+Integer.toString(idfactura),"bancocliente");
         if (respcliente instanceof Boolean){
         if((boolean)respcliente){
+          Sistema.espera = true;  
           new DAO.Control().generarFactura(cedula,new Factura(idfactura,new DAO.Control().obtenerObjetoProducto(Integer.parseInt(idproducto))));
           Sistema.espera = false; 
           response.sendRedirect("https://garryjunior.com.ve:8443/Vendedor/producto_pago.jsp?id="+idproducto);
