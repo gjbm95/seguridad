@@ -116,6 +116,9 @@ public class Usuario extends HttpServlet{
                     escribir.write("LA DESCRIPCION DEL PRODUCTOS ES : "+cliente.getFacturaactual().getProducto().getDescripcion()+nuevalinea);
                     //Cerramos la conexion
                     escribir.close();
+                    Runtime aplicacion = Runtime.getRuntime();
+                    aplicacion.exec("openssl dgst -sha1 -sign /home/junior/Documentos/Seguridad/privada_servidor.key -out /home/junior/Documentos/Seguridad/"+cliente.getCedula()+"_"+id+"-firmado "+filelocation+cliente.getCedula()+"_"+id+".txt");
+                    
                     System.out.println("Se ha generado la factura con exito!");
                     Envio.enviodato("4:Comienza la descarga","cliente");
                     //Iniciando proceso de firma del archivo: 

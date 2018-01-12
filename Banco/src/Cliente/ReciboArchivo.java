@@ -69,6 +69,9 @@ public class ReciboArchivo {
             bos.close();
             dis.close();
             System.out.println("Finalizando proceso de recepcion de factura");
+            //Runtime aplicacion = Runtime.getRuntime();
+            //aplicacion.exec("openssl dgst -sha1 -verify proyectopub.key -signature Descargas/"+d[0]+" /home/junior/Documentos/"+Sistema.cedula+"_"+Sistema.idTransaccion+".txt");
+                    
         } catch (Exception e) {
                 Logger.getLogger(ReciboArchivo.class.getName()).log(Level.SEVERE, null, e);
        

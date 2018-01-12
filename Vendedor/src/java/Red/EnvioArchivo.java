@@ -63,6 +63,7 @@ public class EnvioArchivo extends Thread {
                      dt = solicitud.split(":");
                      System.out.println("Iniciando proceso de envio de factura... ");
                      File localFile = new File(Sistema.rutaFactura+dt[1]);
+                     //File localFile = new File("/home/junior/Documentos/Seguridad/"+dt[1]);
                      bis = new BufferedInputStream(new FileInputStream(localFile));
                      bos = new BufferedOutputStream(connection.getOutputStream());       
                      //Enviamos el nombre del fichero

@@ -38,6 +38,7 @@
         request.getSession().removeAttribute("idproducto");
         request.getSession().removeAttribute("monto");
         request.getSession().removeAttribute("confirmacion");
+        Sistema.espera = true;
         //Validacion del Captcha
         /*
         String remoteAddr = request.getRemoteAddr();
